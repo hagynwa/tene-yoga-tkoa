@@ -173,12 +173,11 @@
     /* === FLUID HERO ================================================== */
     .hero-section {
       text-align: center !important;
-      min-height: calc(100dvh - 3rem);
-      padding-block: clamp(1rem, 3vh, 3rem);
+      padding-block: clamp(0.5rem, 1vh, 1rem);
       position: relative;
       display: block;
     }
-    .hero-section > * { margin-block: clamp(0.5rem, 1.5vh, 1.25rem); }
+    .hero-section > * { margin-block: clamp(0.25rem, 0.8vh, 0.65rem); }
 
     /* Logo: block-level, auto-margins center it horizontally, always */
     .logo-wrap {
@@ -220,7 +219,7 @@
       margin-inline: auto;
     }
 
-    .hero-cta-wrap { margin-block-start: clamp(0.5rem, 2vh, 1.5rem); }
+    .hero-cta-wrap { margin-block-start: clamp(0.25rem, 1vh, 0.75rem); }
     .hero-cta-meta {
       margin-top: 0.75rem;
       font-family: 'Assistant', sans-serif;
@@ -233,7 +232,7 @@
       display: flex;
       justify-content: center;
       color: #B89040;
-      margin-block-start: clamp(1.25rem, 4vh, 2.5rem);
+      margin-block-start: clamp(0.75rem, 2vh, 1.5rem);
     }
     .cue-arrow {
       width: clamp(1.75rem, 6vw, 2.25rem);
@@ -317,8 +316,8 @@
     .btn-primary:active { transform: translateY(-1px); }
 
     /* === FLUID EVENT SECTION ========================================= */
-    .event-section { padding-block: clamp(1.5rem, 5vh, 4rem); }
-    .event-heading { text-align: center; margin-block-end: clamp(1.5rem, 4vh, 3rem); }
+    .event-section { padding-block: clamp(0.75rem, 2vh, 1.5rem); }
+    .event-heading { text-align: center; margin-block-end: clamp(0.75rem, 2vh, 1.5rem); }
     .event-eyebrow {
       display: inline-block;
       font-family: 'Assistant', sans-serif;
@@ -418,11 +417,11 @@
       max-width: 48rem;
       margin-inline: auto;
       padding-inline: clamp(1rem, 5vw, 3rem);
-      padding-block: clamp(0.75rem, 2vh, 2.5rem) clamp(6rem, 12vh, 6rem);
+      padding-block: clamp(0.5rem, 1vh, 1.5rem) clamp(5rem, 10vh, 5rem);
     }
 
     /* === INVITATION SECTION ========================================= */
-    .invite-section { position: relative; padding-block: clamp(1.5rem, 4vh, 3rem); }
+    .invite-section { position: relative; padding-block: clamp(0.75rem, 2vh, 1.5rem); }
     .invite-card {
       border-radius: clamp(1rem, 4vw, 1.75rem);
       padding: clamp(1.25rem, 5vw, 3rem);
@@ -465,8 +464,8 @@
     /* === CONTACT SECTION ============================================ */
     .contact-section {
       text-align: center;
-      margin-block-start: clamp(2rem, 5vh, 3rem);
-      padding-block-end: clamp(1.25rem, 3vh, 2rem);
+      margin-block-start: clamp(1rem, 2.5vh, 1.5rem);
+      padding-block-end: clamp(0.75rem, 2vh, 1.25rem);
     }
     .contact-inner { display: inline-flex; flex-direction: column; align-items: center; gap: 0.25rem; }
     .contact-eyebrow {
@@ -607,14 +606,6 @@
       </div>
     </section>
 
-    <!-- DIVIDER -->
-    <svg class="wavy mx-auto my-6" viewBox="0 0 400 30" preserveAspectRatio="none" fill="none">
-      <path d="M0,15 Q50,0 100,15 T200,15 T300,15 T400,15"
-            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="0 1 0"/>
-      <path d="M0,15 Q50,0 100,15 T200,15 T300,15 T400,15"
-            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-
     <!-- EVENT DETAILS — BIG TYPE -->
     <section class="event-section" data-reveal>
       <div class="event-heading">
@@ -656,12 +647,6 @@
         </a>
       </div>
     </section>
-
-    <!-- DIVIDER -->
-    <svg class="wavy mx-auto my-8" viewBox="0 0 400 30" preserveAspectRatio="none" fill="none">
-      <path d="M0,15 Q50,0 100,15 T200,15 T300,15 T400,15"
-            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
 
     <!-- BOTANICALS + INVITATION -->
     <section class="invite-section" data-reveal>
