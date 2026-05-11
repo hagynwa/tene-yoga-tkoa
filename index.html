@@ -228,20 +228,20 @@
       <div class="grid sm:grid-cols-3 gap-4 sm:gap-5">
         <article class="glass-card rounded-2xl p-6 text-center group" data-reveal>
           <div class="text-wine-500 font-body text-xs tracking-[0.3em] uppercase mb-2">שישי הבא</div>
-          <div class="font-poster text-5xl sm:text-6xl text-terra-600 leading-none">8.5</div>
-          <div class="font-display text-sepia-600 mt-2 text-sm sm:text-base">כ״א באייר</div>
+          <div id="cls-date" class="font-poster text-5xl sm:text-6xl text-terra-600 leading-none">8.5</div>
+          <div id="cls-hebrew" class="font-display text-sepia-600 mt-2 text-sm sm:text-base">כ״א באייר</div>
         </article>
 
         <article class="glass-card rounded-2xl p-6 text-center" data-reveal>
           <div class="text-wine-500 font-body text-xs tracking-[0.3em] uppercase mb-2">שיעור בוקר</div>
-          <div class="font-poster text-5xl sm:text-6xl text-olive-700 leading-none" dir="ltr">8:30</div>
-          <div class="font-display text-sepia-600 mt-2 text-sm sm:text-base">עד 09:45</div>
+          <div id="cls-time" class="font-poster text-5xl sm:text-6xl text-olive-700 leading-none" dir="ltr">8:30</div>
+          <div id="cls-time-end" class="font-display text-sepia-600 mt-2 text-sm sm:text-base">עד 09:45</div>
         </article>
 
         <article class="glass-card rounded-2xl p-6 text-center" data-reveal>
           <div class="text-wine-500 font-body text-xs tracking-[0.3em] uppercase mb-2">המיקום</div>
-          <div class="font-display font-bold text-2xl sm:text-3xl text-wine-500 leading-tight">סטודיו<br/>של איתן</div>
-          <div class="font-body text-sepia-600 mt-2 text-sm">תכלת מרדכי 529, תקוע</div>
+          <div id="cls-place-1" class="font-display font-bold text-2xl sm:text-3xl text-wine-500 leading-tight">סטודיו של איתן</div>
+          <div id="cls-place-2" class="font-body text-sepia-600 mt-2 text-sm">תכלת מרדכי 529, תקוע</div>
         </article>
       </div>
     </section>
@@ -288,14 +288,14 @@
         </p>
 
         <div class="mt-10">
-          <a id="cta" href="#" target="_blank" rel="noopener"
+          <button id="cta" type="button"
              class="btn-primary inline-flex items-center gap-3 px-10 py-5 rounded-full
-                    font-display font-bold text-xl sm:text-2xl">
-            <span>להרשמה לשיעור</span>
+                    font-display font-bold text-xl sm:text-2xl cursor-pointer">
+            <span>הרשמה לשיעור ניסיון</span>
             <svg class="w-6 h-6 -scale-x-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
             </svg>
-          </a>
+          </button>
           <p class="mt-4 font-body text-sm text-sepia-500">המקומות מוגבלים · הרשמה מראש</p>
         </div>
       </div>
@@ -317,6 +317,69 @@
     </section>
 
   </main>
+
+  <!-- ENROLLMENT MODAL -->
+  <div id="enroll-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-sepia-700/40 backdrop-blur-sm">
+    <div class="relative w-full max-w-md glass-card rounded-3xl p-6 sm:p-8" dir="rtl">
+      <button data-close aria-label="סגירה"
+              class="absolute top-3 left-3 w-9 h-9 rounded-full bg-cream-100 hover:bg-cream-200 text-sepia-600 flex items-center justify-center transition">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+
+      <div class="text-center mb-5">
+        <div class="font-body text-xs tracking-[0.3em] uppercase text-wine-500 mb-1">שיעור ניסיון · ללא עלות</div>
+        <h3 class="font-display font-bold text-2xl text-sepia-700">הרשמה</h3>
+      </div>
+
+      <form id="enroll-form" class="space-y-3">
+        <label class="block">
+          <span class="font-body text-xs text-sepia-600 mb-1 block">שם מלא *</span>
+          <input name="name" type="text" required autocomplete="name"
+                 class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-wheat-400/40 focus:border-terra-500 focus:outline-none transition" />
+        </label>
+
+        <label class="block">
+          <span class="font-body text-xs text-sepia-600 mb-1 block">טלפון *</span>
+          <input name="phone" type="tel" required autocomplete="tel" inputmode="tel" dir="ltr"
+                 class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-wheat-400/40 focus:border-terra-500 focus:outline-none transition text-right" />
+        </label>
+
+        <label class="block">
+          <span class="font-body text-xs text-sepia-600 mb-1 block">אימייל (לא חובה)</span>
+          <input name="email" type="email" autocomplete="email" dir="ltr"
+                 class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-wheat-400/40 focus:border-terra-500 focus:outline-none transition text-right" />
+        </label>
+
+        <label class="block">
+          <span class="font-body text-xs text-sepia-600 mb-1 block">הערות / שאלות (לא חובה)</span>
+          <textarea name="notes" rows="2"
+                    class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-wheat-400/40 focus:border-terra-500 focus:outline-none transition resize-none"></textarea>
+        </label>
+
+        <div id="form-error" class="hidden text-terra-600 text-sm font-body bg-terra-400/10 border border-terra-400/30 rounded-xl px-4 py-3"></div>
+
+        <button id="submit-btn" type="submit"
+                class="btn-primary w-full py-4 rounded-full font-display font-bold text-lg mt-2">
+          הרשמה
+        </button>
+
+        <p class="text-center font-body text-xs text-sepia-500 mt-2">
+          שולחת לאיתהאל את הפרטים שלך
+        </p>
+      </form>
+
+      <div id="form-success" class="hidden text-center py-6">
+        <div class="w-16 h-16 mx-auto rounded-full bg-olive-500/20 flex items-center justify-center mb-4">
+          <svg class="w-8 h-8 text-olive-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+        </div>
+        <h4 class="font-display font-bold text-2xl text-sepia-700 mb-2">תודה!</h4>
+        <p class="font-body text-sepia-600">קיבלנו את ההרשמה שלך.<br/>איתהאל תיצור איתך קשר בהקדם.</p>
+        <button data-close class="mt-5 font-display text-terra-500 hover:text-terra-700 transition text-sm">סגירה</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Lenis smooth scroll + GSAP -->
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
@@ -383,5 +446,9 @@
       document.querySelectorAll('.reveal-char').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
     }
   </script>
+
+  <!-- App config + logic -->
+  <script src="assets/config.js"></script>
+  <script type="module" src="assets/app.js"></script>
 </body>
 </html>
