@@ -94,8 +94,8 @@ $('#enroll-form').addEventListener('submit', async (e) => {
       if (error) throw new Error('שמירה נכשלה: ' + error.message);
     }
 
-    // 2) Send email via Web3Forms
-    if (cfg.WEB3FORMS_KEY && !cfg.WEB3FORMS_KEY.includes('YOUR-')) {
+    // 2) Send email via Supabase Edge Function → Resend
+    if (supa) {
       const classInfo = [
         $('#cls-date')?.textContent,
         $('#cls-hebrew')?.textContent,
@@ -103,24 +103,16 @@ $('#enroll-form').addEventListener('submit', async (e) => {
         $('#cls-place-1')?.textContent,
       ].filter(Boolean).join(' · ');
 
-      const emailRes = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          access_key: cfg.WEB3FORMS_KEY,
-          subject:    `הרשמה חדשה: ${payload.name}`,
-          from_name:  'טנא יוגה — הרשמות',
-          to:         cfg.ADMIN_EMAIL,
-          replyto:    payload.email || '',
+      const { error: emailErr } = await supa.functions.invoke('send-enrollment-email', {
+        body: {
           name:       payload.name,
           phone:      payload.phone,
-          email:      payload.email || '—',
-          notes:      payload.notes || '—',
-          class:      classInfo || '—',
-          message:    `הרשמה חדשה לשיעור.\n\nשם: ${payload.name}\nטלפון: ${payload.phone}\nאימייל: ${payload.email || '—'}\nהערות: ${payload.notes || '—'}\nשיעור: ${classInfo || '—'}`,
-        }),
+          email:      payload.email,
+          notes:      payload.notes,
+          class_info: classInfo,
+        },
       });
-      if (!emailRes.ok) console.warn('Email send failed', await emailRes.text());
+      if (emailErr) console.warn('Email send failed', emailErr);
     }
 
     // Success state
