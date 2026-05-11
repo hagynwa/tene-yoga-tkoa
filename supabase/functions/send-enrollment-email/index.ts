@@ -66,7 +66,7 @@ Deno.serve(async (req) => {
       </table>
 
       <p style="color: #8B6F47; font-size: 12px; margin-top: 20px; text-align: center;">
-        ההרשמה נשמרה במערכת. לצפייה בכל ההרשמות: <a href="https://tene-yoga-tkoa.hag.ai/admin.html" style="color: #6E7D45;">פאנל ניהול</a>
+        ההרשמה נשמרה במערכת. לצפייה בכל ההרשמות: <a href="https://tene-yoga-tkoa.r-hag.ai/admin.html" style="color: #6E7D45;">פאנל ניהול</a>
       </p>
     </div>
   `;

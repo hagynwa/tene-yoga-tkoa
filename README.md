@@ -2,8 +2,8 @@
 
 Hebrew landing page for טנא יוגה משמחת with backoffice for managing classes and enrollments.
 
-**Live:** https://tene-yoga-tkoa.hag.ai
-**Admin:** https://tene-yoga-tkoa.hag.ai/admin.html
+**Live:** https://tene-yoga-tkoa.r-hag.ai
+**Admin:** https://tene-yoga-tkoa.r-hag.ai/admin.html
 
 ## Stack
 
@@ -26,7 +26,7 @@ Hebrew landing page for טנא יוגה משמחת with backoffice for managing 
 │   ├── schema.sql                              ← run in SQL editor (one time)
 │   └── functions/send-enrollment-email/
 │       └── index.ts                            ← email-sending Edge Function
-├── CNAME                                       ← tene-yoga-tkoa.hag.ai
+├── CNAME                                       ← tene-yoga-tkoa.r-hag.ai
 └── .nojekyll
 ```
 
@@ -65,10 +65,10 @@ Then **Project Settings → Edge Functions → Secrets → New secret** → `RES
 
 Without verification, emails are sent from `onboarding@resend.dev` and only deliver to the Resend account owner address — which is fine here since we send to `itael8@gmail.com`.
 
-To send from `hag.ai` or another domain, **Resend → Domains → Add Domain** and follow the DNS instructions.
+To send from `r-hag.ai` or another domain, **Resend → Domains → Add Domain** and follow the DNS instructions.
 Then set the FROM_EMAIL secret in Supabase:
 ```
-npx supabase secrets set FROM_EMAIL="Tene Yoga <hello@hag.ai>" --project-ref xuoxkmwtdascazutoaxs
+npx supabase secrets set FROM_EMAIL="Tene Yoga <hello@r-hag.ai>" --project-ref xuoxkmwtdascazutoaxs
 ```
 
 ## Daily use
@@ -91,7 +91,7 @@ Admin → "הרשמות" tab. Filter by class, export to CSV, or delete entries.
 |-------|------------------|-----------------------|
 | CNAME | `tene-yoga-tkoa` | `hagynwa.github.io`   |
 
-Hosted at Spaceship → Manage `hag.ai` → Advanced DNS.
+Hosted at Spaceship → Manage `r-hag.ai` → Advanced DNS.
 
 ## Security
 
