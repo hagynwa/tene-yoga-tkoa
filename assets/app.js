@@ -40,11 +40,10 @@
     set('cls-place-1',  cls.location_line1);
     set('cls-place-2',  cls.location_line2);
 
+    // Waze: use cls.waze_url if the admin set one for this class; otherwise leave
+    // the static (correct) href that is hardcoded in the HTML.
     var waze = document.getElementById('cls-waze');
-    if (waze && (cls.location_line1 || cls.location_line2)) {
-      var addr = [cls.location_line2, cls.location_line1].filter(Boolean).join(', ');
-      waze.href = 'https://waze.com/ul?q=' + encodeURIComponent(addr) + '&navigate=yes';
-    }
+    if (waze && cls.waze_url) waze.href = cls.waze_url;
   }
 
   function populateClassSelect(classes) {
@@ -52,11 +51,15 @@
     var sel  = $('#class-select');
     if (!wrap || !sel) return;
     if (!classes.length) { wrap.hidden = true; return; }
-    sel.innerHTML = classes.map(function (c) {
+
+    sel.innerHTML = classes.map(function (c, i) {
       var bits = [c.date_display, c.title, c.time_start].filter(Boolean).join(' · ');
-      return '<option value="' + esc(c.id) + '">' + esc(bits) + '</option>';
+      return '<option value="' + esc(c.id) + '"' + (i === 0 ? ' selected' : '') + '>' + esc(bits) + '</option>';
     }).join('');
-    wrap.hidden = classes.length < 2;
+
+    // Always show the field — even with one class — so the user can see
+    // (and confirm) which lesson they're enrolling in.
+    wrap.hidden = false;
   }
 
   // ── Modal ───────────────────────────────────────────────────────────
