@@ -108,6 +108,19 @@
     }
   }
 
+  // Pause continuous CSS animations when their host is off-screen.
+  // Saves continuous GPU work + battery on iOS Safari.
+  if ('IntersectionObserver' in window) {
+    var pauseObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        entry.target.classList.toggle('anim-paused', !entry.isIntersecting);
+      });
+    }, { threshold: 0, rootMargin: '50px' });
+    Array.prototype.forEach.call(document.querySelectorAll('.logo-halo, .leaf-float'), function (el) {
+      pauseObs.observe(el);
+    });
+  }
+
   // ── Submit ──────────────────────────────────────────────────────────
   $('#enroll-form').addEventListener('submit', function (e) {
     e.preventDefault();

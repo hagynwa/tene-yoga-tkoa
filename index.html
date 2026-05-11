@@ -12,11 +12,11 @@
   <meta property="og:title"           content="טנא יוגה משמחת · שיעור היכרות בתקוע" />
   <meta property="og:description"     content="שישי כ״א באייר · 08:30 · סטודיו של איתן · שיעור היכרות ללא עלות" />
   <meta property="og:url"             content="https://tene-yoga-tkoa.r-hag.ai/" />
-  <meta property="og:image"           content="https://tene-yoga-tkoa.r-hag.ai/logo.jpg?v=2" />
-  <meta property="og:image:secure_url" content="https://tene-yoga-tkoa.r-hag.ai/logo.jpg?v=2" />
+  <meta property="og:image"           content="https://tene-yoga-tkoa.r-hag.ai/logo.jpg?v=3" />
+  <meta property="og:image:secure_url" content="https://tene-yoga-tkoa.r-hag.ai/logo.jpg?v=3" />
   <meta property="og:image:type"      content="image/jpeg" />
-  <meta property="og:image:width"     content="1024" />
-  <meta property="og:image:height"    content="890" />
+  <meta property="og:image:width"     content="720" />
+  <meta property="og:image:height"    content="626" />
   <meta property="og:image:alt"       content="טנא יוגה משמחת — לוגו" />
   <meta property="og:locale"          content="he_IL" />
 
@@ -24,13 +24,17 @@
   <meta name="twitter:card"        content="summary_large_image" />
   <meta name="twitter:title"       content="טנא יוגה משמחת · שיעור היכרות בתקוע" />
   <meta name="twitter:description" content="שישי כ״א באייר · 08:30 · סטודיו של איתן · שיעור היכרות ללא עלות" />
-  <meta name="twitter:image"       content="https://tene-yoga-tkoa.r-hag.ai/logo.jpg?v=2" />
+  <meta name="twitter:image"       content="https://tene-yoga-tkoa.r-hag.ai/logo.jpg?v=3" />
 
   <link rel="icon" type="image/jpeg" href="logo.jpg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;500;700;900&family=Assistant:wght@300;400;500;600;700&family=Suez+One&display=swap" rel="stylesheet">
+  <link rel="preload"
+        href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;500;700;900&family=Assistant:wght@300;400;500;600;700&family=Suez+One&display=swap"
+        as="style">
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;500;700;900&family=Assistant:wght@300;400;500;600;700&family=Suez+One&display=swap"
+        rel="stylesheet">
 
 
   <style>
@@ -235,7 +239,6 @@
       width: clamp(1.75rem, 6vw, 2.25rem);
       height: clamp(1.75rem, 6vw, 2.25rem);
       animation: cue-blink 1.4s ease-in-out infinite;
-      will-change: opacity, transform;
     }
     @keyframes cue-blink {
       0%, 100% { opacity: 0.2; transform: translateY(0); }
@@ -266,7 +269,17 @@
       z-index: -1;
       pointer-events: none;
       animation: breathe 6s ease-in-out infinite;
-      will-change: transform, opacity;
+    }
+    /* Pause continuous animations when the element is off-screen (JS toggles .anim-paused) */
+    .leaf-float.anim-paused        { animation-play-state: paused; }
+    .logo-halo.anim-paused::before { animation-play-state: paused; }
+
+    /* Below-fold sections skip rendering until scrolled into view */
+    .event-section,
+    .invite-section,
+    .contact-section {
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 600px;
     }
     @keyframes breathe {
       0%, 100% { transform: scale(1);   opacity: 0.85; }
@@ -512,7 +525,7 @@
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50%      { transform: translateY(-14px) rotate(8deg); }
     }
-    .leaf-float { animation: float-leaf 7s ease-in-out infinite; will-change: transform; }
+    .leaf-float { animation: float-leaf 7s ease-in-out infinite; }
     .leaf-float.delay-1 { animation-delay: 1.5s; }
     .leaf-float.delay-2 { animation-delay: 3s; }
 
