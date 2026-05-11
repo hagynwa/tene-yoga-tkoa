@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>טנא יוגה משמחת · שיעור היכרות בתקוע</title>
+  <meta name="description" content="טנא יוגה משמחת · שיעור היכרות ללא עלות בסטודיו של איתן בתקוע, שישי כ״א באייר" />
+  <meta property="og:title" content="טנא יוגה משמחת · שיעור היכרות בתקוע" />
+  <meta property="og:description" content="שישי כ״א באייר · 08:30 · סטודיו של איתן · שיעור היכרות ללא עלות" />
+  <meta property="og:image" content="logo.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/jpeg" href="logo.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;500;700;900&family=Assistant:wght@300;400;500;600;700&family=Suez+One&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream:   { 50:'#FBF6E9', 100:'#F6EAD0', 200:'#EFDDB8', 300:'#E6CE9C' },
+            terra:   { 400:'#E08658', 500:'#D9531E', 600:'#C44425', 700:'#9E331A' },
+            olive:   { 400:'#A9B47A', 500:'#8C9A5A', 600:'#6E7D45', 700:'#525E33' },
+            wine:    { 400:'#7A5E94', 500:'#5B4374', 600:'#48345C', 700:'#332545' },
+            wheat:   { 400:'#D9C285', 500:'#C9A961', 600:'#B89040', 700:'#8E6E2D' },
+            sepia:   { 400:'#A78352', 500:'#8B6F47', 600:'#6B4E2E', 700:'#3D2E1F' },
+          },
+          fontFamily: {
+            display: ['"Frank Ruhl Libre"', 'serif'],
+            body:    ['"Assistant"', 'system-ui', 'sans-serif'],
+            poster:  ['"Suez One"', 'serif'],
+          },
+          boxShadow: {
+            soft:   '0 4px 24px -8px rgba(107, 78, 46, 0.18)',
+            warm:   '0 10px 40px -12px rgba(199, 68, 37, 0.35)',
+            inset:  'inset 0 1px 0 rgba(255,255,255,0.55)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html, body { background: #FBF6E9; }
+    body {
+      font-family: 'Assistant', system-ui, sans-serif;
+      color: #3D2E1F;
+      overflow-x: hidden;
+    }
+
+    /* Paper grain */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.43 0 0 0 0 0.28 0 0 0 0.07 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
+      opacity: 0.6;
+      mix-blend-mode: multiply;
+    }
+
+    /* Watercolor blobs (CSS-only, blurred radial gradients) */
+    .wash {
+      position: absolute; border-radius: 50%; filter: blur(60px);
+      pointer-events: none; mix-blend-mode: multiply; opacity: 0.55;
+      z-index: 0;
+    }
+    .wash-terra  { background: radial-gradient(circle, #D9531E 0%, transparent 70%); }
+    .wash-olive  { background: radial-gradient(circle, #8C9A5A 0%, transparent 70%); }
+    .wash-wine   { background: radial-gradient(circle, #5B4374 0%, transparent 70%); }
+    .wash-wheat  { background: radial-gradient(circle, #C9A961 0%, transparent 70%); }
+
+    /* Logo halo */
+    .logo-halo {
+      position: relative;
+      display: inline-block;
+    }
+    .logo-halo::before {
+      content: '';
+      position: absolute; inset: -28px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217, 194, 133, 0.55) 0%, rgba(217, 194, 133, 0) 65%);
+      z-index: -1;
+      animation: breathe 6s ease-in-out infinite;
+    }
+    @keyframes breathe {
+      0%, 100% { transform: scale(1);   opacity: 0.85; }
+      50%      { transform: scale(1.08); opacity: 1; }
+    }
+
+    /* Title char reveal */
+    .reveal-char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(28px) rotate(-2deg);
+    }
+
+    /* Card */
+    .glass-card {
+      background: linear-gradient(135deg, rgba(255,251,233,0.85), rgba(246,234,208,0.7));
+      border: 1px solid rgba(184, 144, 64, 0.28);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 32px -12px rgba(107, 78, 46, 0.22), inset 0 1px 0 rgba(255,255,255,0.6);
+    }
+
+    /* CTA */
+    .btn-primary {
+      position: relative;
+      background: linear-gradient(135deg, #6E7D45 0%, #8C9A5A 60%, #A9B47A 100%);
+      color: #FBF6E9;
+      box-shadow: 0 10px 28px -8px rgba(110, 125, 69, 0.55), inset 0 1px 0 rgba(255,255,255,0.2);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute; inset: 0; border-radius: inherit;
+      background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent 40%);
+      pointer-events: none;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px -10px rgba(110, 125, 69, 0.7), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .btn-primary:active { transform: translateY(-1px); }
+
+    /* Section divider — hand-drawn wavy line */
+    .wavy {
+      width: 100%; height: 36px;
+      color: #B89040; opacity: 0.45;
+    }
+
+    /* Floating leaves animation */
+    @keyframes float-leaf {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50%      { transform: translateY(-14px) rotate(8deg); }
+    }
+    .leaf-float { animation: float-leaf 7s ease-in-out infinite; }
+    .leaf-float.delay-1 { animation-delay: 1.5s; }
+    .leaf-float.delay-2 { animation-delay: 3s; }
+
+    /* Scroll cue */
+    @keyframes scroll-cue {
+      0% { transform: translateY(0); opacity: 0; }
+      40% { opacity: 1; }
+      80% { transform: translateY(10px); opacity: 0; }
+      100% { transform: translateY(10px); opacity: 0; }
+    }
+    .scroll-cue::after {
+      content: ''; display: block; width: 2px; height: 10px;
+      background: currentColor; border-radius: 1px;
+      animation: scroll-cue 2s ease-in-out infinite;
+      margin: 4px auto;
+    }
+
+    /* Sticky mobile CTA */
+    @media (max-width: 768px) {
+      .mobile-cta { position: sticky; bottom: 1rem; z-index: 30; }
+    }
+
+    /* Smooth focus rings */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid #C44425; outline-offset: 4px; border-radius: 6px;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen relative">
+
+  <!-- Background washes -->
+  <div class="wash wash-terra" style="width:520px; height:520px; top:-160px; left:-180px;"></div>
+  <div class="wash wash-olive" style="width:600px; height:600px; top:30%; right:-220px;"></div>
+  <div class="wash wash-wheat" style="width:440px; height:440px; top:65%; left:-140px;"></div>
+  <div class="wash wash-wine"  style="width:380px; height:380px; bottom:-120px; right:-100px;"></div>
+
+  <main class="relative z-10 max-w-3xl mx-auto px-5 sm:px-8 pt-10 pb-24">
+
+    <!-- HERO -->
+    <section class="text-center pt-6 pb-12 relative">
+      <div class="logo-halo mb-8 inline-block" data-anim="logo">
+        <img src="logo.jpg" alt="טנא יוגה משמחת — לוגו"
+             class="w-[260px] sm:w-[320px] md:w-[360px] h-auto rounded-full shadow-soft"
+             loading="eager" decoding="async" />
+      </div>
+
+      <h1 class="font-display font-black text-sepia-700 leading-[1.05] tracking-tight
+                 text-[2.6rem] sm:text-6xl md:text-7xl mb-3" data-anim="title">
+        <span class="block">טנא יוגה</span>
+        <span class="block text-terra-500 italic font-display font-normal text-[1.8rem] sm:text-4xl md:text-5xl mt-2">
+          משמחת.
+        </span>
+      </h1>
+
+      <p class="font-display text-xl sm:text-2xl md:text-3xl text-olive-700 mt-6 max-w-xl mx-auto" data-anim="subtitle">
+        טנא מגיע לתקוע
+      </p>
+
+      <div class="mt-12 text-wheat-600 scroll-cue text-xs tracking-[0.3em] uppercase opacity-70" data-anim="cue">
+        גלילה
+      </div>
+    </section>
+
+    <!-- DIVIDER -->
+    <svg class="wavy mx-auto my-6" viewBox="0 0 400 30" preserveAspectRatio="none" fill="none">
+      <path d="M0,15 Q50,0 100,15 T200,15 T300,15 T400,15"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="0 1 0"/>
+      <path d="M0,15 Q50,0 100,15 T200,15 T300,15 T400,15"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+
+    <!-- EVENT DETAILS — BIG TYPE -->
+    <section class="py-10" data-reveal>
+      <div class="text-center mb-10">
+        <span class="inline-block font-body font-medium text-xs tracking-[0.4em] uppercase text-wine-500 mb-3">
+          שיעור היכרות
+        </span>
+        <h2 class="font-poster text-5xl sm:text-7xl md:text-8xl text-terra-600 leading-none">
+          ללא עלות
+        </h2>
+        <div class="mt-4 inline-flex items-center gap-2 font-body text-sepia-600 text-sm">
+          <span class="block h-px w-8 bg-wheat-500"></span>
+          <span>הזמנה אישית מאיתהאל</span>
+          <span class="block h-px w-8 bg-wheat-500"></span>
+        </div>
+      </div>
+
+      <!-- Date / Time / Place cards -->
+      <div class="grid sm:grid-cols-3 gap-4 sm:gap-5">
+        <article class="glass-card rounded-2xl p-6 text-center group" data-reveal>
+          <div class="text-wine-500 font-body text-xs tracking-[0.3em] uppercase mb-2">שישי הבא</div>
+          <div class="font-poster text-5xl sm:text-6xl text-terra-600 leading-none">8.5</div>
+          <div class="font-display text-sepia-600 mt-2 text-sm sm:text-base">כ״א באייר</div>
+        </article>
+
+        <article class="glass-card rounded-2xl p-6 text-center" data-reveal>
+          <div class="text-wine-500 font-body text-xs tracking-[0.3em] uppercase mb-2">שיעור בוקר</div>
+          <div class="font-poster text-5xl sm:text-6xl text-olive-700 leading-none" dir="ltr">8:30</div>
+          <div class="font-display text-sepia-600 mt-2 text-sm sm:text-base">עד 09:45</div>
+        </article>
+
+        <article class="glass-card rounded-2xl p-6 text-center" data-reveal>
+          <div class="text-wine-500 font-body text-xs tracking-[0.3em] uppercase mb-2">המיקום</div>
+          <div class="font-display font-bold text-2xl sm:text-3xl text-wine-500 leading-tight">סטודיו<br/>של איתן</div>
+          <div class="font-body text-sepia-600 mt-2 text-sm">תכלת מרדכי 529, תקוע</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- DIVIDER -->
+    <svg class="wavy mx-auto my-8" viewBox="0 0 400 30" preserveAspectRatio="none" fill="none">
+      <path d="M0,15 Q50,0 100,15 T200,15 T300,15 T400,15"
+            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+
+    <!-- BOTANICALS + INVITATION -->
+    <section class="relative py-12" data-reveal>
+      <!-- decorative botanical SVG -->
+      <svg class="absolute -top-4 right-2 sm:right-6 w-20 h-20 sm:w-28 sm:h-28 text-olive-500 opacity-70 leaf-float"
+           viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+        <path d="M50,90 C50,60 30,40 20,20 C40,30 50,55 50,80"/>
+        <path d="M50,90 C50,60 70,40 80,20 C60,30 50,55 50,80"/>
+        <ellipse cx="32" cy="40" rx="8" ry="3" transform="rotate(-30 32 40)" fill="currentColor" opacity="0.5"/>
+        <ellipse cx="68" cy="40" rx="8" ry="3" transform="rotate(30 68 40)" fill="currentColor" opacity="0.5"/>
+        <ellipse cx="38" cy="60" rx="7" ry="2.5" transform="rotate(-30 38 60)" fill="currentColor" opacity="0.5"/>
+        <ellipse cx="62" cy="60" rx="7" ry="2.5" transform="rotate(30 62 60)" fill="currentColor" opacity="0.5"/>
+      </svg>
+
+      <svg class="absolute -top-2 left-2 sm:left-6 w-16 h-16 sm:w-24 sm:h-24 text-wheat-600 opacity-70 leaf-float delay-2"
+           viewBox="0 0 100 100" fill="currentColor">
+        <circle cx="50" cy="20" r="5" opacity="0.7"/>
+        <circle cx="42" cy="32" r="5" opacity="0.7"/>
+        <circle cx="58" cy="32" r="5" opacity="0.7"/>
+        <circle cx="38" cy="46" r="5" opacity="0.7"/>
+        <circle cx="50" cy="46" r="5" opacity="0.7"/>
+        <circle cx="62" cy="46" r="5" opacity="0.7"/>
+        <circle cx="44" cy="60" r="5" opacity="0.7"/>
+        <circle cx="56" cy="60" r="5" opacity="0.7"/>
+        <circle cx="50" cy="74" r="5" opacity="0.7"/>
+      </svg>
+
+      <div class="glass-card rounded-3xl p-8 sm:p-12 text-center relative">
+        <p class="font-display text-2xl sm:text-3xl md:text-4xl text-sepia-700 leading-relaxed max-w-xl mx-auto">
+          מוזמנות לבוקר של תנועה,
+          <br/>
+          <span class="text-terra-500">נשימה</span>
+          ושמחה
+          <span class="text-olive-700">פשוטה</span>.
+        </p>
+
+        <div class="mt-10">
+          <a id="cta" href="#" target="_blank" rel="noopener"
+             class="btn-primary inline-flex items-center gap-3 px-10 py-5 rounded-full
+                    font-display font-bold text-xl sm:text-2xl">
+            <span>להרשמה לשיעור</span>
+            <svg class="w-6 h-6 -scale-x-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
+          </a>
+          <p class="mt-4 font-body text-sm text-sepia-500">המקומות מוגבלים · הרשמה מראש</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="text-center mt-12 pb-8" data-reveal>
+      <div class="inline-flex flex-col items-center gap-1">
+        <div class="font-body text-xs tracking-[0.3em] uppercase text-wine-500">לפרטים ושאלות</div>
+        <div class="font-display font-bold text-2xl text-sepia-700 mt-1">איתהאל</div>
+        <a href="tel:+972528990312"
+           class="font-body text-lg text-terra-500 hover:text-terra-700 transition-colors mt-1"
+           dir="ltr">052-899-0312</a>
+      </div>
+
+      <div class="mt-8 text-wheat-600 text-sm tracking-[0.6em]" aria-hidden="true">
+        🌿 · 🍇 · 🌾
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Lenis smooth scroll + GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <script>
+    // Smooth scroll
+    const lenis = new Lenis({ duration: 1.1, easing: t => 1 - Math.pow(1 - t, 3), smoothWheel: true });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    gsap.registerPlugin(ScrollTrigger);
+    lenis.on('scroll', ScrollTrigger.update);
+
+    // Split title into characters for stagger
+    const title = document.querySelector('[data-anim="title"]');
+    title.querySelectorAll('span').forEach(line => {
+      const text = line.textContent;
+      line.textContent = '';
+      [...text].forEach(ch => {
+        const span = document.createElement('span');
+        span.className = 'reveal-char';
+        span.textContent = ch === ' ' ? ' ' : ch;
+        line.appendChild(span);
+      });
+    });
+
+    // Intro timeline
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    tl.fromTo('[data-anim="logo"]',
+        { opacity: 0, scale: 0.92, y: 20 },
+        { opacity: 1, scale: 1, y: 0, duration: 1.2 })
+      .to('.reveal-char',
+        { opacity: 1, y: 0, rotate: 0, stagger: 0.04, duration: 0.8 }, '-=0.6')
+      .fromTo('[data-anim="subtitle"]',
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.8 }, '-=0.4')
+      .fromTo('[data-anim="cue"]',
+        { opacity: 0 }, { opacity: 0.7, duration: 0.6 }, '-=0.3');
+
+    // Scroll reveals
+    gsap.utils.toArray('[data-reveal]').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1, y: 0, duration: 1, ease: 'power3.out',
+          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' }
+        });
+    });
+
+    // Subtle parallax on background washes
+    gsap.utils.toArray('.wash').forEach((el, i) => {
+      gsap.to(el, {
+        y: (i % 2 === 0) ? -80 : 80,
+        ease: 'none',
+        scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom top', scrub: 0.6 }
+      });
+    });
+
+    // Reduced motion respect
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.globalTimeline.timeScale(0);
+      document.querySelectorAll('.reveal-char').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+    }
+  </script>
+</body>
+</html>
