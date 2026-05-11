@@ -32,36 +32,123 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;500;700;900&family=Assistant:wght@300;400;500;600;700&family=Suez+One&display=swap" rel="stylesheet">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            cream:   { 50:'#FBF6E9', 100:'#F6EAD0', 200:'#EFDDB8', 300:'#E6CE9C' },
-            terra:   { 400:'#E08658', 500:'#D9531E', 600:'#C44425', 700:'#9E331A' },
-            olive:   { 400:'#A9B47A', 500:'#8C9A5A', 600:'#6E7D45', 700:'#525E33' },
-            wine:    { 400:'#7A5E94', 500:'#5B4374', 600:'#48345C', 700:'#332545' },
-            wheat:   { 400:'#D9C285', 500:'#C9A961', 600:'#B89040', 700:'#8E6E2D' },
-            sepia:   { 400:'#A78352', 500:'#8B6F47', 600:'#6B4E2E', 700:'#3D2E1F' },
-          },
-          fontFamily: {
-            display: ['"Frank Ruhl Libre"', 'serif'],
-            body:    ['"Assistant"', 'system-ui', 'sans-serif'],
-            poster:  ['"Suez One"', 'serif'],
-          },
-          boxShadow: {
-            soft:   '0 4px 24px -8px rgba(107, 78, 46, 0.18)',
-            warm:   '0 10px 40px -12px rgba(199, 68, 37, 0.35)',
-            inset:  'inset 0 1px 0 rgba(255,255,255,0.55)',
-          },
-        },
-      },
-    };
-  </script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; }
+    /* === Utility classes (replaces Tailwind CDN) === */
+    .hidden { display: none !important; }
+    .block { display: block; }
+    .flex { display: flex; }
+    .fixed { position: fixed; }
+    .absolute { position: absolute; }
+    .relative { position: relative; }
+    .inset-0 { inset: 0; }
+    .z-50 { z-index: 50; }
+    .top-3 { top: 0.75rem; }
+    .left-3 { left: 0.75rem; }
+    .left-2 { left: 0.5rem; }
+    .right-2 { right: 0.5rem; }
+    .items-center { align-items: center; }
+    .items-end { align-items: flex-end; }
+    .justify-center { justify-content: center; }
+    .w-full { width: 100%; }
+    .w-4 { width: 1rem; } .w-8 { width: 2rem; } .w-9 { width: 2.25rem; }
+    .w-16 { width: 4rem; } .w-20 { width: 5rem; }
+    .h-4 { height: 1rem; } .h-8 { height: 2rem; } .h-9 { height: 2.25rem; }
+    .h-16 { height: 4rem; } .h-20 { height: 5rem; }
+    .max-w-md { max-width: 28rem; }
+    .max-h-\[92vh\] { max-height: 92vh; }
+    .min-w-0 { min-width: 0; }
+
+    .p-0 { padding: 0; } .p-5 { padding: 1.25rem; }
+    .px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+    .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+    .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+    .py-6 { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+    .mb-1 { margin-bottom: 0.25rem; } .mb-2 { margin-bottom: 0.5rem; }
+    .mb-4 { margin-bottom: 1rem; }   .mb-5 { margin-bottom: 1.25rem; }
+    .mt-1 { margin-top: 0.25rem; } .mt-2 { margin-top: 0.5rem; }
+    .mt-3 { margin-top: 0.75rem; } .mt-5 { margin-top: 1.25rem; }
+    .mt-8 { margin-top: 2rem; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .my-6 { margin-top: 1.5rem; margin-bottom: 1.5rem; }
+    .my-8 { margin-top: 2rem; margin-bottom: 2rem; }
+
+    .rounded-full { border-radius: 9999px; }
+    .rounded-xl   { border-radius: 0.75rem; }
+    .rounded-3xl  { border-radius: 1.5rem; }
+    .rounded-t-3xl { border-top-left-radius: 1.5rem; border-top-right-radius: 1.5rem; }
+
+    .text-center { text-align: center; }
+    .text-right  { text-align: right; }
+    .text-xs { font-size: 0.75rem; line-height: 1rem; }
+    .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+    .text-base { font-size: 1rem; line-height: 1.5rem; }
+    .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+    .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+    .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+    .font-bold { font-weight: 700; }
+    .font-medium { font-weight: 500; }
+    .font-display { font-family: 'Frank Ruhl Libre', serif; }
+    .font-body { font-family: 'Assistant', sans-serif; }
+    .uppercase { text-transform: uppercase; }
+    .leading-tight { line-height: 1.25; }
+    .tracking-\[0\.3em\] { letter-spacing: 0.3em; }
+    .tracking-\[0\.4em\] { letter-spacing: 0.4em; }
+
+    .text-terra-500 { color: #D9531E; } .text-terra-600 { color: #C44425; } .text-terra-700 { color: #9E331A; }
+    .text-olive-500 { color: #8C9A5A; } .text-olive-600 { color: #6E7D45; } .text-olive-700 { color: #525E33; }
+    .text-sepia-500 { color: #8B6F47; } .text-sepia-600 { color: #6B4E2E; } .text-sepia-700 { color: #3D2E1F; }
+    .text-wine-500  { color: #5B4374; } .text-wheat-500 { color: #C9A961; } .text-wheat-600 { color: #B89040; }
+    .bg-cream-50  { background-color: #FBF6E9; } .bg-cream-100 { background-color: #F6EAD0; } .bg-cream-200 { background-color: #EFDDB8; }
+    .bg-olive-500\/20  { background-color: rgba(140,154,90,0.2); }
+    .bg-sepia-700\/40  { background-color: rgba(61,46,31,0.4); }
+    .bg-terra-400\/10  { background-color: rgba(224,134,88,0.1); }
+    .border { border-width: 1px; border-style: solid; }
+    .border-wheat-400\/40 { border-color: rgba(217,194,133,0.4); }
+    .border-terra-400\/30 { border-color: rgba(224,134,88,0.3); }
+
+    .cursor-pointer { cursor: pointer; }
+    .appearance-none { appearance: none; -webkit-appearance: none; }
+    .resize-none { resize: none; }
+    .overflow-y-auto { overflow-y: auto; }
+    .transition { transition: background-color 0.2s, color 0.2s, transform 0.2s; }
+    .opacity-70 { opacity: 0.7; }
+
+    .hover\:bg-cream-200:hover { background-color: #EFDDB8; }
+    .hover\:text-terra-700:hover { color: #9E331A; }
+    .focus\:border-terra-500:focus { border-color: #D9531E; }
+    .focus\:outline-none:focus { outline: none; }
+
+    /* Backdrop blur is too costly on iOS — leave overlay color only */
+    .backdrop-blur-sm { backdrop-filter: none; }
+
+    @media (min-width: 640px) {
+      .sm\:items-center { align-items: center; }
+      .sm\:p-4 { padding: 1rem; }
+      .sm\:p-8 { padding: 2rem; }
+      .sm\:rounded-3xl { border-radius: 1.5rem; }
+      .sm\:w-24 { width: 6rem; } .sm\:h-24 { height: 6rem; }
+      .sm\:w-28 { width: 7rem; } .sm\:h-28 { height: 7rem; }
+      .sm\:right-6 { right: 1.5rem; } .sm\:left-6 { left: 1.5rem; }
+      .sm\:gap-3 { gap: 0.75rem; }
+    }
+
+    .space-y-3 > * + * { margin-top: 0.75rem; }
+
+    /* === Intro animations (replaces GSAP) === */
+    @keyframes heroLogoIn { from { opacity: 0; transform: scale(0.94) translateY(14px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes heroFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    [data-anim="logo"]     { animation: heroLogoIn 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    [data-anim="title"]    { animation: heroFadeIn 0.6s 0.25s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    [data-anim="subtitle"] { animation: heroFadeIn 0.6s 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+    [data-anim="cue"]      { animation: heroFadeIn 0.4s 0.65s ease-out both; }
+    @media (prefers-reduced-motion: reduce) {
+      [data-anim] { animation: none !important; opacity: 1 !important; transform: none !important; }
+    }
+
     html, body {
       background: #FBF6E9;
       width: 100%;
@@ -77,13 +164,7 @@
       position: relative;
     }
 
-    /* Paper grain — absolute so it paints once, not on every scroll frame */
-    body::before {
-      content: '';
-      position: absolute; inset: 0; pointer-events: none; z-index: 0;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.43 0 0 0 0 0.28 0 0 0 0.04 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
-      opacity: 0.3;
-    }
+    /* Paper grain removed: caused extra paints on iOS for no clear visual benefit */
 
     /* === FLUID HERO ================================================== */
     .hero-section {
@@ -164,13 +245,11 @@
     /* Watercolor blobs (CSS-only, blurred radial gradients) */
     .wash {
       position: absolute; border-radius: 50%;
-      filter: blur(50px);                        /* constant — 8vw was up to 150px on desktop */
+      filter: blur(40px);                       /* no mix-blend-mode — iOS perf killer */
       pointer-events: none;
-      mix-blend-mode: multiply;
-      opacity: 0.5;
+      opacity: 0.4;
       z-index: 0;
-      transform: translateZ(0);                  /* GPU layer; never repaint */
-      will-change: transform;
+      transform: translateZ(0);
     }
     .wash-terra  { background: radial-gradient(circle, #D9531E 0%, transparent 70%); }
     .wash-olive  { background: radial-gradient(circle, #8C9A5A 0%, transparent 70%); }
@@ -719,54 +798,10 @@
     </div>
   </div>
 
-  <!-- Lightweight animations: GSAP intro only, no Lenis, no ScrollTrigger -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
-
-  <style>
-    /* Sections render immediately — no scroll-triggered fade-in.
-       The reveal animation made scrolling feel slow because each section
-       had a 0.7s delay before becoming visible. */
-    [data-reveal] { opacity: 1; transform: none; }
-  </style>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-      const showAll = () => document.querySelectorAll(".reveal-char")
-        .forEach(el => { el.style.opacity = 1; el.style.transform = "none"; });
-
-      if (reduced) { showAll(); return; }
-
-      // Split title into characters for stagger
-      const title = document.querySelector('[data-anim="title"]');
-      title?.querySelectorAll("span").forEach(line => {
-        const text = line.textContent;
-        line.textContent = "";
-        [...text].forEach(ch => {
-          // Spaces stay as real text nodes — wrapping a space in inline-block collapses it
-          if (ch === " ") { line.appendChild(document.createTextNode(" ")); return; }
-          const span = document.createElement("span");
-          span.className = "reveal-char";
-          span.textContent = ch;
-          line.appendChild(span);
-        });
-      });
-
-      const startIntro = () => {
-        gsap.timeline({ defaults: { ease: "power3.out" } })
-          .fromTo('[data-anim="logo"]',     { opacity: 0, scale: 0.94, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.9 })
-          .to(".reveal-char",                { opacity: 1, y: 0, rotate: 0, stagger: 0.025, duration: 0.5 }, "-=0.45")
-          .fromTo('[data-anim="subtitle"]', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.25")
-          .fromTo('[data-anim="cue"]',      { opacity: 0 }, { opacity: 1, duration: 0.4 }, "-=0.2");
-      };
-      if (typeof gsap !== "undefined") startIntro();
-      else window.addEventListener("load", () => typeof gsap !== "undefined" ? startIntro() : showAll());
-    });
-  </script>
+  <!-- Intro animation is pure CSS — no JS libs needed -->
 
   <!-- App config + logic -->
-  <script src="assets/config.js"></script>
-  <script type="module" src="assets/app.js"></script>
+  <script src="assets/config.js" defer></script>
+  <script src="assets/app.js" defer></script>
 </body>
 </html>
