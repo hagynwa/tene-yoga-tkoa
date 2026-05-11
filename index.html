@@ -137,32 +137,28 @@
     }
 
     .hero-cta-wrap { margin-block-start: clamp(0.5rem, 2vh, 1.5rem); }
-    .hero-cta {
-      display: inline-flex; align-items: center; justify-content: center;
-      gap: 0.5rem;
-      padding: clamp(0.85rem, 1.6vh, 1.15rem) clamp(1.5rem, 5vw, 2.5rem);
-      border-radius: 999px;
-      font-family: 'Frank Ruhl Libre', serif;
-      font-weight: 700;
-      font-size: clamp(1rem, 3.6vw, 1.35rem);
-      cursor: pointer;
-      max-width: 92%;
-    }
     .hero-cta-meta {
       margin-top: 0.75rem;
       font-family: 'Assistant', sans-serif;
       font-size: clamp(0.75rem, 2.6vw, 0.85rem);
       color: #8B6F47;
     }
+
+    /* Blinking scroll-down arrow */
     .hero-cue {
-      align-self: center;
+      display: flex;
+      justify-content: center;
       color: #B89040;
-      font-size: 0.7rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      opacity: 0.7;
-      margin-block-start: auto;
-      padding-block-start: 1.5rem;
+      margin-block-start: clamp(1.25rem, 4vh, 2.5rem);
+    }
+    .cue-arrow {
+      width: clamp(1.75rem, 6vw, 2.25rem);
+      height: clamp(1.75rem, 6vw, 2.25rem);
+      animation: cue-blink 1.4s ease-in-out infinite;
+    }
+    @keyframes cue-blink {
+      0%, 100% { opacity: 0.2; transform: translateY(0); }
+      50%      { opacity: 1;   transform: translateY(0.35rem); }
     }
 
     /* Watercolor blobs (CSS-only, blurred radial gradients) */
@@ -400,20 +396,6 @@
     .leaf-float.delay-1 { animation-delay: 1.5s; }
     .leaf-float.delay-2 { animation-delay: 3s; }
 
-    /* Scroll cue */
-    @keyframes scroll-cue {
-      0% { transform: translateY(0); opacity: 0; }
-      40% { opacity: 1; }
-      80% { transform: translateY(10px); opacity: 0; }
-      100% { transform: translateY(10px); opacity: 0; }
-    }
-    .scroll-cue::after {
-      content: ''; display: block; width: 2px; height: 10px;
-      background: currentColor; border-radius: 1px;
-      animation: scroll-cue 2s ease-in-out infinite;
-      margin: 4px auto;
-    }
-
     /* Smooth focus rings */
     a:focus-visible, button:focus-visible {
       outline: 2px solid #C44425; outline-offset: 4px; border-radius: 6px;
@@ -478,15 +460,22 @@
         טנא מגיע לתקוע
       </p>
 
-      <!-- Above-the-fold CTA -->
+      <!-- Above-the-fold CTA (same component as the bottom CTA) -->
       <div class="hero-cta-wrap" data-anim="subtitle">
-        <button id="cta-hero" type="button" class="btn-primary hero-cta">
-          הרשמה לשיעור ניסיון ללא עלות
+        <button id="cta-hero" type="button" class="btn-primary invite-cta">
+          <span>הרשמה לשיעור ניסיון</span>
+          <svg class="invite-cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
         </button>
-        <p class="hero-cta-meta">שישי · 8.5 · 08:30 · סטודיו של איתן</p>
+        <p class="hero-cta-meta">שיעור ניסיון ללא עלות · שישי 8.5 · 08:30</p>
       </div>
 
-      <div class="hero-cue scroll-cue" data-anim="cue">גלילה</div>
+      <div class="hero-cue" data-anim="cue" aria-label="גלילה למטה">
+        <svg class="cue-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="m6 9 6 6 6-6"/>
+        </svg>
+      </div>
     </section>
 
     <!-- DIVIDER -->
