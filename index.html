@@ -85,9 +85,82 @@
       mix-blend-mode: multiply;
     }
 
+    /* === FLUID HERO (clamp + vw, no pixel-locked sizes) ============== */
+    .hero-section {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: calc(100dvh - 3rem);
+      padding-block: clamp(1rem, 3vh, 3rem);
+      gap: clamp(0.75rem, 2vh, 2rem);
+      position: relative;
+    }
+
+    .logo-wrap   { align-self: center; }
+    .logo-img    {
+      width: clamp(11rem, 55vw, 22rem);  /* 176px ↔ 352px, smooth */
+      height: auto;
+      border-radius: 50%;
+      box-shadow: 0 4px 24px -8px rgba(107,78,46,0.18);
+    }
+
+    .hero-title  {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 900;
+      color: #6B4E2E;
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      font-size: clamp(2.2rem, 9vw, 5rem);
+    }
+    .hero-title-accent {
+      color: #D9531E;
+      font-style: italic;
+      font-weight: 400;
+      font-size: clamp(1.5rem, 6vw, 3.25rem);
+      margin-top: 0.25em;
+    }
+
+    .hero-subtitle {
+      font-family: 'Frank Ruhl Libre', serif;
+      color: #525E33;
+      font-size: clamp(1.05rem, 4vw, 1.875rem);
+      max-width: 36rem;
+      margin-inline: auto;
+    }
+
+    .hero-cta-wrap { margin-block-start: clamp(0.5rem, 2vh, 1.5rem); }
+    .hero-cta {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.5rem;
+      padding: clamp(0.85rem, 1.6vh, 1.15rem) clamp(1.5rem, 5vw, 2.5rem);
+      border-radius: 999px;
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 700;
+      font-size: clamp(1rem, 3.6vw, 1.35rem);
+      cursor: pointer;
+      max-width: 92%;
+    }
+    .hero-cta-meta {
+      margin-top: 0.75rem;
+      font-family: 'Assistant', sans-serif;
+      font-size: clamp(0.75rem, 2.6vw, 0.85rem);
+      color: #8B6F47;
+    }
+    .hero-cue {
+      align-self: center;
+      color: #B89040;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-block-start: auto;
+      padding-block-start: 1.5rem;
+    }
+
     /* Watercolor blobs (CSS-only, blurred radial gradients) */
     .wash {
-      position: absolute; border-radius: 50%; filter: blur(60px);
+      position: absolute; border-radius: 50%; filter: blur(8vw);
       pointer-events: none; mix-blend-mode: multiply; opacity: 0.55;
       z-index: 0;
     }
@@ -149,9 +222,167 @@
     }
     .btn-primary:active { transform: translateY(-1px); }
 
+    /* === FLUID EVENT SECTION ========================================= */
+    .event-section { padding-block: clamp(1.5rem, 5vh, 4rem); }
+    .event-heading { text-align: center; margin-block-end: clamp(1.5rem, 4vh, 3rem); }
+    .event-eyebrow {
+      display: inline-block;
+      font-family: 'Assistant', sans-serif;
+      font-weight: 500;
+      font-size: clamp(0.65rem, 2.5vw, 0.75rem);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #5B4374;
+      margin-block-end: 0.75rem;
+    }
+    .event-headline {
+      font-family: 'Suez One', serif;
+      color: #C44425;
+      line-height: 1;
+      font-size: clamp(3rem, 14vw, 7rem);
+    }
+    .event-byline {
+      margin-block-start: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Assistant', sans-serif;
+      font-size: clamp(0.8rem, 3vw, 1rem);
+      color: #6B4E2E;
+    }
+    .event-byline-line { display: block; height: 1px; width: clamp(1rem, 4vw, 2rem); background: #C9A961; }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(0.75rem, 2.5vw, 1.25rem);
+    }
+    @media (min-width: 40rem) {
+      .event-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .event-card {
+      border-radius: clamp(0.75rem, 2vw, 1rem);
+      padding: clamp(1rem, 3.5vw, 1.5rem);
+      text-align: center;
+    }
+    .event-card-label {
+      color: #5B4374;
+      font-family: 'Assistant', sans-serif;
+      font-size: clamp(0.65rem, 2.5vw, 0.75rem);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-block-end: 0.5rem;
+    }
+    .event-card-big {
+      font-family: 'Suez One', serif;
+      line-height: 1;
+      font-size: clamp(2.5rem, 10vw, 3.75rem);
+    }
+    .event-card-place {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 700;
+      line-height: 1.15;
+      font-size: clamp(1.15rem, 4.5vw, 1.85rem);
+    }
+    .event-card-sub {
+      font-family: 'Frank Ruhl Libre', serif;
+      color: #6B4E2E;
+      font-size: clamp(0.8rem, 3vw, 1rem);
+      margin-block-start: 0.5rem;
+    }
+
+    /* === PAGE SHELL ================================================== */
+    .page-shell {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 48rem;
+      margin-inline: auto;
+      padding-inline: clamp(1rem, 5vw, 3rem);
+      padding-block: clamp(0.75rem, 2vh, 2.5rem) clamp(6rem, 12vh, 6rem);
+    }
+
+    /* === INVITATION SECTION ========================================= */
+    .invite-section { position: relative; padding-block: clamp(1.5rem, 4vh, 3rem); }
+    .invite-card {
+      border-radius: clamp(1rem, 4vw, 1.75rem);
+      padding: clamp(1.25rem, 5vw, 3rem);
+      text-align: center;
+      position: relative;
+    }
+    .invite-text {
+      font-family: 'Frank Ruhl Libre', serif;
+      color: #3D2E1F;
+      line-height: 1.55;
+      font-size: clamp(1.1rem, 4.5vw, 2rem);
+      max-width: 34rem;
+      margin-inline: auto;
+    }
+    .invite-cta-wrap { margin-block-start: clamp(1.25rem, 3vh, 2.5rem); }
+    .invite-cta {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 0.6rem;
+      padding: clamp(0.85rem, 2vh, 1.25rem) clamp(1.5rem, 5vw, 2.5rem);
+      border-radius: 999px;
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 700;
+      font-size: clamp(1.05rem, 4vw, 1.5rem);
+      cursor: pointer;
+      width: 100%;
+      max-width: 22rem;
+    }
+    .invite-cta-arrow {
+      width: 1.25em; height: 1.25em;
+      transform: scaleX(-1);
+      flex-shrink: 0;
+    }
+    .invite-cta-meta {
+      margin-block-start: 0.85rem;
+      font-family: 'Assistant', sans-serif;
+      font-size: clamp(0.7rem, 2.6vw, 0.875rem);
+      color: #8B6F47;
+    }
+
+    /* === CONTACT SECTION ============================================ */
+    .contact-section {
+      text-align: center;
+      margin-block-start: clamp(2rem, 5vh, 3rem);
+      padding-block-end: clamp(1.25rem, 3vh, 2rem);
+    }
+    .contact-inner { display: inline-flex; flex-direction: column; align-items: center; gap: 0.25rem; }
+    .contact-eyebrow {
+      font-family: 'Assistant', sans-serif;
+      font-size: clamp(0.65rem, 2.5vw, 0.75rem);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #5B4374;
+    }
+    .contact-name {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 700;
+      font-size: clamp(1.3rem, 5vw, 1.75rem);
+      color: #3D2E1F;
+      margin-block-start: 0.25rem;
+    }
+    .contact-phone {
+      font-family: 'Assistant', sans-serif;
+      font-size: clamp(1rem, 4vw, 1.25rem);
+      color: #D9531E;
+      text-decoration: none;
+      margin-block-start: 0.25rem;
+      transition: color 0.2s;
+    }
+    .contact-phone:hover { color: #9E331A; }
+    .contact-emoji {
+      margin-block-start: clamp(1.25rem, 3vh, 2rem);
+      color: #B89040;
+      font-size: 0.9rem;
+      letter-spacing: 0.6em;
+    }
+
     /* Section divider — hand-drawn wavy line */
     .wavy {
-      width: 100%; height: 36px;
+      width: 100%; height: 2.25rem;
       color: #B89040; opacity: 0.45;
     }
 
@@ -194,56 +425,63 @@
       .logo-halo::before { inset: -16px; }
     }
 
+    /* Floating mobile CTA — relative units */
+    .floating-cta {
+      position: fixed;
+      inset-inline: clamp(0.75rem, 4vw, 1.5rem);
+      bottom: max(0.75rem, env(safe-area-inset-bottom));
+      z-index: 40;
+    }
+    .floating-cta-btn {
+      width: 100%;
+      padding-block: clamp(0.85rem, 2vh, 1.1rem);
+      border-radius: 999px;
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 700;
+      font-size: clamp(1rem, 3.8vw, 1.15rem);
+    }
     /* Floating CTA only on md and below */
-    @media (min-width: 768px) {
-      #floating-cta { display: none !important; }
+    @media (min-width: 48rem) {
+      .floating-cta { display: none !important; }
     }
   </style>
 </head>
 
 <body class="min-h-screen relative">
 
-  <!-- Background washes -->
-  <div class="wash wash-terra" style="width:520px; height:520px; top:-160px; left:-180px;"></div>
-  <div class="wash wash-olive" style="width:600px; height:600px; top:30%; right:-220px;"></div>
-  <div class="wash wash-wheat" style="width:440px; height:440px; top:65%; left:-140px;"></div>
-  <div class="wash wash-wine"  style="width:380px; height:380px; bottom:-120px; right:-100px;"></div>
+  <!-- Background washes (viewport-relative, never pixel-locked) -->
+  <div class="wash wash-terra" style="width:65vw; aspect-ratio:1; top:-20vw; left:-25vw;"></div>
+  <div class="wash wash-olive" style="width:75vw; aspect-ratio:1; top:30%; right:-30vw;"></div>
+  <div class="wash wash-wheat" style="width:55vw; aspect-ratio:1; top:65%; left:-20vw;"></div>
+  <div class="wash wash-wine"  style="width:50vw; aspect-ratio:1; bottom:-15vw; right:-15vw;"></div>
 
-  <main class="relative z-10 max-w-3xl mx-auto px-4 sm:px-8 pt-3 sm:pt-10 pb-28 sm:pb-24">
+  <main class="page-shell">
 
-    <!-- HERO — fills viewport on mobile, content centered vertically -->
-    <section class="text-center flex flex-col justify-center min-h-[calc(100vh-3rem)] sm:min-h-0 sm:pt-6 sm:pb-12 relative">
-      <div class="logo-halo mb-5 sm:mb-8 inline-block self-center" data-anim="logo">
-        <img src="logo.jpg" alt="טנא יוגה משמחת — לוגו"
-             class="w-[230px] sm:w-[300px] md:w-[360px] h-auto rounded-full shadow-soft"
+    <!-- HERO — fluid sizing across all viewports -->
+    <section class="hero-section">
+      <div class="logo-halo logo-wrap" data-anim="logo">
+        <img src="logo.jpg" alt="טנא יוגה משמחת — לוגו" class="logo-img"
              loading="eager" decoding="async" />
       </div>
 
-      <h1 class="font-display font-black text-sepia-700 leading-[1.02] tracking-tight
-                 text-[2.7rem] sm:text-6xl md:text-7xl mb-2 sm:mb-3" data-anim="title">
+      <h1 class="hero-title" data-anim="title">
         <span class="block">טנא יוגה</span>
-        <span class="block text-terra-500 italic font-display font-normal text-[1.8rem] sm:text-4xl md:text-5xl mt-1 sm:mt-2">
-          משמחת.
-        </span>
+        <span class="block hero-title-accent">משמחת.</span>
       </h1>
 
-      <p class="font-display text-xl sm:text-2xl md:text-3xl text-olive-700 mt-4 sm:mt-6 max-w-xl mx-auto" data-anim="subtitle">
+      <p class="hero-subtitle" data-anim="subtitle">
         טנא מגיע לתקוע
       </p>
 
       <!-- Above-the-fold CTA -->
-      <div class="mt-6 sm:mt-10" data-anim="subtitle">
-        <button id="cta-hero" type="button"
-                class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full
-                       font-display font-bold text-lg sm:text-xl cursor-pointer">
+      <div class="hero-cta-wrap" data-anim="subtitle">
+        <button id="cta-hero" type="button" class="btn-primary hero-cta">
           הרשמה לשיעור ניסיון ללא עלות
         </button>
-        <p class="mt-3 font-body text-xs text-sepia-500">שישי · 8.5 · 08:30 · סטודיו של איתן</p>
+        <p class="hero-cta-meta">שישי · 8.5 · 08:30 · סטודיו של איתן</p>
       </div>
 
-      <div class="mt-6 sm:mt-12 text-wheat-600 scroll-cue text-xs tracking-[0.3em] uppercase opacity-70 self-center" data-anim="cue">
-        גלילה
-      </div>
+      <div class="hero-cue scroll-cue" data-anim="cue">גלילה</div>
     </section>
 
     <!-- DIVIDER -->
@@ -255,39 +493,34 @@
     </svg>
 
     <!-- EVENT DETAILS — BIG TYPE -->
-    <section class="py-6 sm:py-10" data-reveal>
-      <div class="text-center mb-6 sm:mb-10">
-        <span class="inline-block font-body font-medium text-xs tracking-[0.4em] uppercase text-wine-500 mb-2 sm:mb-3">
-          שיעור היכרות
-        </span>
-        <h2 class="font-poster text-[3.5rem] sm:text-7xl md:text-8xl text-terra-600 leading-none">
-          ללא עלות
-        </h2>
-        <div class="mt-3 sm:mt-4 inline-flex items-center gap-2 font-body text-sepia-600 text-sm">
-          <span class="block h-px w-6 sm:w-8 bg-wheat-500"></span>
+    <section class="event-section" data-reveal>
+      <div class="event-heading">
+        <span class="event-eyebrow">שיעור היכרות</span>
+        <h2 class="event-headline">ללא עלות</h2>
+        <div class="event-byline">
+          <span class="event-byline-line"></span>
           <span>הזמנה אישית מאיתהאל</span>
-          <span class="block h-px w-6 sm:w-8 bg-wheat-500"></span>
+          <span class="event-byline-line"></span>
         </div>
       </div>
 
-      <!-- Date / Time / Place cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5">
-        <article class="glass-card rounded-2xl p-5 sm:p-6 text-center group" data-reveal>
-          <div class="text-wine-500 font-body text-xs tracking-[0.3em] uppercase mb-2">שישי הבא</div>
-          <div id="cls-date" class="font-poster text-5xl sm:text-6xl text-terra-600 leading-none">8.5</div>
-          <div id="cls-hebrew" class="font-display text-sepia-600 mt-2 text-sm sm:text-base">כ״א באייר</div>
+      <div class="event-grid">
+        <article class="glass-card event-card" data-reveal>
+          <div class="event-card-label">שישי הבא</div>
+          <div id="cls-date" class="event-card-big text-terra-600">8.5</div>
+          <div id="cls-hebrew" class="event-card-sub">כ״א באייר</div>
         </article>
 
-        <article class="glass-card rounded-2xl p-5 sm:p-6 text-center" data-reveal>
-          <div class="text-wine-500 font-body text-xs tracking-[0.3em] uppercase mb-2">שיעור בוקר</div>
-          <div id="cls-time" class="font-poster text-5xl sm:text-6xl text-olive-700 leading-none" dir="ltr">8:30</div>
-          <div id="cls-time-end" class="font-display text-sepia-600 mt-2 text-sm sm:text-base">עד 09:45</div>
+        <article class="glass-card event-card" data-reveal>
+          <div class="event-card-label">שיעור בוקר</div>
+          <div id="cls-time" class="event-card-big text-olive-700" dir="ltr">8:30</div>
+          <div id="cls-time-end" class="event-card-sub">עד 09:45</div>
         </article>
 
-        <article class="glass-card rounded-2xl p-5 sm:p-6 text-center" data-reveal>
-          <div class="text-wine-500 font-body text-xs tracking-[0.3em] uppercase mb-2">המיקום</div>
-          <div id="cls-place-1" class="font-display font-bold text-xl sm:text-3xl text-wine-500 leading-tight">סטודיו של איתן</div>
-          <div id="cls-place-2" class="font-body text-sepia-600 mt-2 text-sm">תכלת מרדכי 529, תקוע</div>
+        <article class="glass-card event-card" data-reveal>
+          <div class="event-card-label">המיקום</div>
+          <div id="cls-place-1" class="event-card-place text-wine-500">סטודיו של איתן</div>
+          <div id="cls-place-2" class="event-card-sub">תכלת מרדכי 529, תקוע</div>
         </article>
       </div>
     </section>
@@ -299,7 +532,7 @@
     </svg>
 
     <!-- BOTANICALS + INVITATION -->
-    <section class="relative py-8 sm:py-12" data-reveal>
+    <section class="invite-section" data-reveal>
       <!-- decorative botanical SVG -->
       <svg class="absolute -top-4 right-2 sm:right-6 w-20 h-20 sm:w-28 sm:h-28 text-olive-500 opacity-70 leaf-float"
            viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -324,8 +557,8 @@
         <circle cx="50" cy="74" r="5" opacity="0.7"/>
       </svg>
 
-      <div class="glass-card rounded-3xl p-6 sm:p-12 text-center relative">
-        <p class="font-display text-xl sm:text-3xl md:text-4xl text-sepia-700 leading-relaxed max-w-xl mx-auto">
+      <div class="invite-card glass-card">
+        <p class="invite-text">
           מוזמנות לבוקר של תנועה,
           <br/>
           <span class="text-terra-500">נשימה</span>
@@ -333,41 +566,33 @@
           <span class="text-olive-700">פשוטה</span>.
         </p>
 
-        <div class="mt-6 sm:mt-10">
-          <button id="cta" type="button"
-             class="btn-primary inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-10 py-4 sm:py-5 rounded-full
-                    font-display font-bold text-lg sm:text-2xl cursor-pointer w-full sm:w-auto justify-center">
+        <div class="invite-cta-wrap">
+          <button id="cta" type="button" class="btn-primary invite-cta">
             <span>הרשמה לשיעור ניסיון</span>
-            <svg class="w-5 h-5 sm:w-6 sm:h-6 -scale-x-100 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="invite-cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
             </svg>
           </button>
-          <p class="mt-3 sm:mt-4 font-body text-xs sm:text-sm text-sepia-500">המקומות מוגבלים · הרשמה מראש</p>
+          <p class="invite-cta-meta">המקומות מוגבלים · הרשמה מראש</p>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section class="text-center mt-12 pb-8" data-reveal>
-      <div class="inline-flex flex-col items-center gap-1">
-        <div class="font-body text-xs tracking-[0.3em] uppercase text-wine-500">לפרטים ושאלות</div>
-        <div class="font-display font-bold text-2xl text-sepia-700 mt-1">איתהאל</div>
-        <a href="tel:+972528990312"
-           class="font-body text-lg text-terra-500 hover:text-terra-700 transition-colors mt-1"
-           dir="ltr">052-899-0312</a>
+    <section class="contact-section" data-reveal>
+      <div class="contact-inner">
+        <div class="contact-eyebrow">לפרטים ושאלות</div>
+        <div class="contact-name">איתהאל</div>
+        <a href="tel:+972528990312" class="contact-phone" dir="ltr">052-899-0312</a>
       </div>
-
-      <div class="mt-8 text-wheat-600 text-sm tracking-[0.6em]" aria-hidden="true">
-        🌿 · 🍇 · 🌾
-      </div>
+      <div class="contact-emoji" aria-hidden="true">🌿 · 🍇 · 🌾</div>
     </section>
 
   </main>
 
   <!-- FLOATING MOBILE CTA (appears after hero) -->
-  <div id="floating-cta" class="hidden md:hidden fixed bottom-4 left-4 right-4 z-40">
-    <button type="button" data-open-modal
-            class="btn-primary w-full py-4 rounded-full font-display font-bold text-lg shadow-warm">
+  <div id="floating-cta" class="floating-cta hidden">
+    <button type="button" data-open-modal class="btn-primary floating-cta-btn">
       הרשמה לשיעור ניסיון
     </button>
   </div>
