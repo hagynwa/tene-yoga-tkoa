@@ -170,14 +170,20 @@
       margin: 4px auto;
     }
 
-    /* Sticky mobile CTA */
-    @media (max-width: 768px) {
-      .mobile-cta { position: sticky; bottom: 1rem; z-index: 30; }
-    }
-
     /* Smooth focus rings */
     a:focus-visible, button:focus-visible {
       outline: 2px solid #C44425; outline-offset: 4px; border-radius: 6px;
+    }
+
+    /* iOS: prevent zoom on focus by ensuring 16px+ inputs */
+    input, textarea, select { font-size: 16px; }
+
+    /* Touch targets ≥ 44px (Apple HIG) */
+    button, a.btn-primary, .cta-button { min-height: 44px; }
+
+    /* Tiny phones (≤360px) — pull oversized type down a touch */
+    @media (max-width: 360px) {
+      .logo-halo::before { inset: -16px; }
     }
   </style>
 </head>
@@ -336,8 +342,8 @@
   </main>
 
   <!-- ENROLLMENT MODAL -->
-  <div id="enroll-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-sepia-700/40 backdrop-blur-sm">
-    <div class="relative w-full max-w-md glass-card rounded-3xl p-6 sm:p-8" dir="rtl">
+  <div id="enroll-modal" class="hidden fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-sepia-700/40 backdrop-blur-sm overflow-y-auto">
+    <div class="relative w-full max-w-md glass-card rounded-t-3xl sm:rounded-3xl p-5 sm:p-8 max-h-[92vh] overflow-y-auto" dir="rtl">
       <button data-close aria-label="סגירה"
               class="absolute top-3 left-3 w-9 h-9 rounded-full bg-cream-100 hover:bg-cream-200 text-sepia-600 flex items-center justify-center transition">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>

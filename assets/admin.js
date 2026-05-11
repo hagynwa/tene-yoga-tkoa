@@ -193,12 +193,12 @@ function renderEnrollments() {
   }
   tb.innerHTML = rows.map(r => `
     <tr class="border-t border-wheat-500/15 hover:bg-cream-100/50">
-      <td class="px-4 py-3 font-medium">${esc(r.name)}</td>
-      <td class="px-4 py-3" dir="ltr">${esc(r.phone)}</td>
-      <td class="px-4 py-3" dir="ltr">${esc(r.email || '—')}</td>
-      <td class="px-4 py-3 text-sepia-600">${r.classes ? esc(`${r.classes.date_display} · ${r.classes.title}`) : '—'}</td>
-      <td class="px-4 py-3 text-sepia-500 max-w-xs truncate">${esc(r.notes || '')}</td>
-      <td class="px-4 py-3 text-sepia-500 text-xs" dir="ltr">${formatDate(r.created_at)}</td>
+      <td class="px-3 sm:px-4 py-3 font-medium">${esc(r.name)}</td>
+      <td class="px-3 sm:px-4 py-3" dir="ltr"><a href="tel:${esc(r.phone)}" class="text-terra-600 hover:underline">${esc(r.phone)}</a></td>
+      <td class="px-4 py-3 hidden md:table-cell" dir="ltr">${r.email ? `<a href="mailto:${esc(r.email)}" class="text-terra-600 hover:underline">${esc(r.email)}</a>` : '—'}</td>
+      <td class="px-4 py-3 text-sepia-600 hidden sm:table-cell">${r.classes ? esc(`${r.classes.date_display} · ${r.classes.title}`) : '—'}</td>
+      <td class="px-4 py-3 text-sepia-500 max-w-xs truncate hidden lg:table-cell">${esc(r.notes || '')}</td>
+      <td class="px-4 py-3 text-sepia-500 text-xs hidden md:table-cell" dir="ltr">${formatDate(r.created_at)}</td>
       <td class="px-2 py-3"><button class="text-terra-600 text-xs hover:underline" data-del-enr="${r.id}">מחיקה</button></td>
     </tr>
   `).join('');
