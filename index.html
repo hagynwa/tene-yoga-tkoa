@@ -77,13 +77,12 @@
       position: relative;
     }
 
-    /* Paper grain */
+    /* Paper grain — absolute so it paints once, not on every scroll frame */
     body::before {
       content: '';
-      position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.43 0 0 0 0 0.28 0 0 0 0.07 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
-      opacity: 0.6;
-      mix-blend-mode: multiply;
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.43 0 0 0 0 0.28 0 0 0 0.04 0'/></filter><rect width='240' height='240' filter='url(%23n)'/></svg>");
+      opacity: 0.3;
     }
 
     /* === FLUID HERO ================================================== */
@@ -155,6 +154,7 @@
       width: clamp(1.75rem, 6vw, 2.25rem);
       height: clamp(1.75rem, 6vw, 2.25rem);
       animation: cue-blink 1.4s ease-in-out infinite;
+      will-change: opacity, transform;
     }
     @keyframes cue-blink {
       0%, 100% { opacity: 0.2; transform: translateY(0); }
@@ -163,9 +163,14 @@
 
     /* Watercolor blobs (CSS-only, blurred radial gradients) */
     .wash {
-      position: absolute; border-radius: 50%; filter: blur(8vw);
-      pointer-events: none; mix-blend-mode: multiply; opacity: 0.55;
+      position: absolute; border-radius: 50%;
+      filter: blur(50px);                        /* constant — 8vw was up to 150px on desktop */
+      pointer-events: none;
+      mix-blend-mode: multiply;
+      opacity: 0.5;
       z-index: 0;
+      transform: translateZ(0);                  /* GPU layer; never repaint */
+      will-change: transform;
     }
     .wash-terra  { background: radial-gradient(circle, #D9531E 0%, transparent 70%); }
     .wash-olive  { background: radial-gradient(circle, #8C9A5A 0%, transparent 70%); }
@@ -182,6 +187,7 @@
       z-index: -1;
       pointer-events: none;
       animation: breathe 6s ease-in-out infinite;
+      will-change: transform, opacity;
     }
     @keyframes breathe {
       0%, 100% { transform: scale(1);   opacity: 0.85; }
@@ -195,11 +201,10 @@
       transform: translateY(28px) rotate(-2deg);
     }
 
-    /* Card */
+    /* Card — solid translucent fill instead of backdrop-filter (expensive) */
     .glass-card {
-      background: linear-gradient(135deg, rgba(255,251,233,0.85), rgba(246,234,208,0.7));
+      background: linear-gradient(135deg, rgba(255,251,233,0.92), rgba(246,234,208,0.85));
       border: 1px solid rgba(184, 144, 64, 0.28);
-      backdrop-filter: blur(6px);
       box-shadow: 0 8px 32px -12px rgba(107, 78, 46, 0.22), inset 0 1px 0 rgba(255,255,255,0.6);
     }
 
@@ -392,7 +397,7 @@
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50%      { transform: translateY(-14px) rotate(8deg); }
     }
-    .leaf-float { animation: float-leaf 7s ease-in-out infinite; }
+    .leaf-float { animation: float-leaf 7s ease-in-out infinite; will-change: transform; }
     .leaf-float.delay-1 { animation-delay: 1.5s; }
     .leaf-float.delay-2 { animation-delay: 3s; }
 
@@ -654,70 +659,58 @@
     </div>
   </div>
 
-  <!-- Lenis smooth scroll + GSAP -->
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <!-- Lightweight animations: GSAP intro only, no Lenis, no ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+
+  <style>
+    /* CSS-driven reveals — no continuous JS, no scroll listeners */
+    [data-reveal]          { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+    [data-reveal].revealed { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      [data-reveal], .reveal-char { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
 
   <script>
-    // Smooth scroll
-    const lenis = new Lenis({ duration: 1.1, easing: t => 1 - Math.pow(1 - t, 3), smoothWheel: true });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
+    document.addEventListener("DOMContentLoaded", () => {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    gsap.registerPlugin(ScrollTrigger);
-    lenis.on('scroll', ScrollTrigger.update);
-
-    // Split title into characters for stagger
-    const title = document.querySelector('[data-anim="title"]');
-    title.querySelectorAll('span').forEach(line => {
-      const text = line.textContent;
-      line.textContent = '';
-      [...text].forEach(ch => {
-        const span = document.createElement('span');
-        span.className = 'reveal-char';
-        span.textContent = ch === ' ' ? ' ' : ch;
-        line.appendChild(span);
-      });
-    });
-
-    // Intro timeline
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.fromTo('[data-anim="logo"]',
-        { opacity: 0, scale: 0.92, y: 20 },
-        { opacity: 1, scale: 1, y: 0, duration: 1.2 })
-      .to('.reveal-char',
-        { opacity: 1, y: 0, rotate: 0, stagger: 0.04, duration: 0.8 }, '-=0.6')
-      .fromTo('[data-anim="subtitle"]',
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.8 }, '-=0.4')
-      .fromTo('[data-anim="cue"]',
-        { opacity: 0 }, { opacity: 0.7, duration: 0.6 }, '-=0.3');
-
-    // Scroll reveals
-    gsap.utils.toArray('[data-reveal]').forEach(el => {
-      gsap.fromTo(el,
-        { opacity: 0, y: 40 },
-        {
-          opacity: 1, y: 0, duration: 1, ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reverse' }
+      // Reveal-on-scroll via IntersectionObserver — fires once per element
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add("revealed"); io.unobserve(e.target); }
         });
-    });
+      }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+      document.querySelectorAll("[data-reveal]").forEach(el => io.observe(el));
 
-    // Subtle parallax on background washes
-    gsap.utils.toArray('.wash').forEach((el, i) => {
-      gsap.to(el, {
-        y: (i % 2 === 0) ? -80 : 80,
-        ease: 'none',
-        scrollTrigger: { trigger: document.body, start: 'top top', end: 'bottom top', scrub: 0.6 }
+      const showAll = () => document.querySelectorAll(".reveal-char, [data-reveal]")
+        .forEach(el => { el.style.opacity = 1; el.style.transform = "none"; });
+
+      if (reduced) { showAll(); return; }
+
+      // Split title into characters for stagger
+      const title = document.querySelector('[data-anim="title"]');
+      title?.querySelectorAll("span").forEach(line => {
+        const text = line.textContent;
+        line.textContent = "";
+        [...text].forEach(ch => {
+          const span = document.createElement("span");
+          span.className = "reveal-char";
+          span.textContent = ch === " " ? " " : ch;
+          line.appendChild(span);
+        });
       });
-    });
 
-    // Reduced motion respect
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      gsap.globalTimeline.timeScale(0);
-      document.querySelectorAll('.reveal-char').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
-    }
+      const startIntro = () => {
+        gsap.timeline({ defaults: { ease: "power3.out" } })
+          .fromTo('[data-anim="logo"]',     { opacity: 0, scale: 0.94, y: 14 }, { opacity: 1, scale: 1, y: 0, duration: 0.9 })
+          .to(".reveal-char",                { opacity: 1, y: 0, rotate: 0, stagger: 0.025, duration: 0.5 }, "-=0.45")
+          .fromTo('[data-anim="subtitle"]', { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.25")
+          .fromTo('[data-anim="cue"]',      { opacity: 0 }, { opacity: 1, duration: 0.4 }, "-=0.2");
+      };
+      if (typeof gsap !== "undefined") startIntro();
+      else window.addEventListener("load", () => typeof gsap !== "undefined" ? startIntro() : showAll());
+    });
   </script>
 
   <!-- App config + logic -->
