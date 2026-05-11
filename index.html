@@ -61,11 +61,19 @@
   </script>
 
   <style>
-    html, body { background: #FBF6E9; }
+    html, body {
+      background: #FBF6E9;
+      width: 100%;
+      max-width: 100vw;
+      margin: 0;
+      padding: 0;
+    }
     body {
       font-family: 'Assistant', system-ui, sans-serif;
       color: #3D2E1F;
       overflow-x: hidden;
+      min-height: 100vh;
+      min-height: 100dvh;
     }
 
     /* Paper grain */
@@ -196,29 +204,29 @@
   <div class="wash wash-wheat" style="width:440px; height:440px; top:65%; left:-140px;"></div>
   <div class="wash wash-wine"  style="width:380px; height:380px; bottom:-120px; right:-100px;"></div>
 
-  <main class="relative z-10 max-w-3xl mx-auto px-5 sm:px-8 pt-10 pb-24">
+  <main class="relative z-10 max-w-3xl mx-auto px-4 sm:px-8 pt-4 sm:pt-10 pb-16 sm:pb-24">
 
     <!-- HERO -->
-    <section class="text-center pt-6 pb-12 relative">
-      <div class="logo-halo mb-8 inline-block" data-anim="logo">
+    <section class="text-center pt-2 pb-6 sm:pt-6 sm:pb-12 relative">
+      <div class="logo-halo mb-4 sm:mb-8 inline-block" data-anim="logo">
         <img src="logo.jpg" alt="טנא יוגה משמחת — לוגו"
-             class="w-[260px] sm:w-[320px] md:w-[360px] h-auto rounded-full shadow-soft"
+             class="w-[200px] sm:w-[300px] md:w-[360px] h-auto rounded-full shadow-soft"
              loading="eager" decoding="async" />
       </div>
 
       <h1 class="font-display font-black text-sepia-700 leading-[1.05] tracking-tight
-                 text-[2.6rem] sm:text-6xl md:text-7xl mb-3" data-anim="title">
+                 text-[2.4rem] sm:text-6xl md:text-7xl mb-2 sm:mb-3" data-anim="title">
         <span class="block">טנא יוגה</span>
-        <span class="block text-terra-500 italic font-display font-normal text-[1.8rem] sm:text-4xl md:text-5xl mt-2">
+        <span class="block text-terra-500 italic font-display font-normal text-[1.6rem] sm:text-4xl md:text-5xl mt-1 sm:mt-2">
           משמחת.
         </span>
       </h1>
 
-      <p class="font-display text-xl sm:text-2xl md:text-3xl text-olive-700 mt-6 max-w-xl mx-auto" data-anim="subtitle">
+      <p class="font-display text-lg sm:text-2xl md:text-3xl text-olive-700 mt-4 sm:mt-6 max-w-xl mx-auto" data-anim="subtitle">
         טנא מגיע לתקוע
       </p>
 
-      <div class="mt-12 text-wheat-600 scroll-cue text-xs tracking-[0.3em] uppercase opacity-70" data-anim="cue">
+      <div class="mt-6 sm:mt-12 text-wheat-600 scroll-cue text-xs tracking-[0.3em] uppercase opacity-70" data-anim="cue">
         גלילה
       </div>
     </section>
@@ -232,38 +240,38 @@
     </svg>
 
     <!-- EVENT DETAILS — BIG TYPE -->
-    <section class="py-10" data-reveal>
-      <div class="text-center mb-10">
-        <span class="inline-block font-body font-medium text-xs tracking-[0.4em] uppercase text-wine-500 mb-3">
+    <section class="py-6 sm:py-10" data-reveal>
+      <div class="text-center mb-6 sm:mb-10">
+        <span class="inline-block font-body font-medium text-xs tracking-[0.4em] uppercase text-wine-500 mb-2 sm:mb-3">
           שיעור היכרות
         </span>
-        <h2 class="font-poster text-5xl sm:text-7xl md:text-8xl text-terra-600 leading-none">
+        <h2 class="font-poster text-[3.5rem] sm:text-7xl md:text-8xl text-terra-600 leading-none">
           ללא עלות
         </h2>
-        <div class="mt-4 inline-flex items-center gap-2 font-body text-sepia-600 text-sm">
-          <span class="block h-px w-8 bg-wheat-500"></span>
+        <div class="mt-3 sm:mt-4 inline-flex items-center gap-2 font-body text-sepia-600 text-sm">
+          <span class="block h-px w-6 sm:w-8 bg-wheat-500"></span>
           <span>הזמנה אישית מאיתהאל</span>
-          <span class="block h-px w-8 bg-wheat-500"></span>
+          <span class="block h-px w-6 sm:w-8 bg-wheat-500"></span>
         </div>
       </div>
 
       <!-- Date / Time / Place cards -->
-      <div class="grid sm:grid-cols-3 gap-4 sm:gap-5">
-        <article class="glass-card rounded-2xl p-6 text-center group" data-reveal>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5">
+        <article class="glass-card rounded-2xl p-5 sm:p-6 text-center group" data-reveal>
           <div class="text-wine-500 font-body text-xs tracking-[0.3em] uppercase mb-2">שישי הבא</div>
           <div id="cls-date" class="font-poster text-5xl sm:text-6xl text-terra-600 leading-none">8.5</div>
           <div id="cls-hebrew" class="font-display text-sepia-600 mt-2 text-sm sm:text-base">כ״א באייר</div>
         </article>
 
-        <article class="glass-card rounded-2xl p-6 text-center" data-reveal>
+        <article class="glass-card rounded-2xl p-5 sm:p-6 text-center" data-reveal>
           <div class="text-wine-500 font-body text-xs tracking-[0.3em] uppercase mb-2">שיעור בוקר</div>
           <div id="cls-time" class="font-poster text-5xl sm:text-6xl text-olive-700 leading-none" dir="ltr">8:30</div>
           <div id="cls-time-end" class="font-display text-sepia-600 mt-2 text-sm sm:text-base">עד 09:45</div>
         </article>
 
-        <article class="glass-card rounded-2xl p-6 text-center" data-reveal>
+        <article class="glass-card rounded-2xl p-5 sm:p-6 text-center" data-reveal>
           <div class="text-wine-500 font-body text-xs tracking-[0.3em] uppercase mb-2">המיקום</div>
-          <div id="cls-place-1" class="font-display font-bold text-2xl sm:text-3xl text-wine-500 leading-tight">סטודיו של איתן</div>
+          <div id="cls-place-1" class="font-display font-bold text-xl sm:text-3xl text-wine-500 leading-tight">סטודיו של איתן</div>
           <div id="cls-place-2" class="font-body text-sepia-600 mt-2 text-sm">תכלת מרדכי 529, תקוע</div>
         </article>
       </div>
@@ -276,7 +284,7 @@
     </svg>
 
     <!-- BOTANICALS + INVITATION -->
-    <section class="relative py-12" data-reveal>
+    <section class="relative py-8 sm:py-12" data-reveal>
       <!-- decorative botanical SVG -->
       <svg class="absolute -top-4 right-2 sm:right-6 w-20 h-20 sm:w-28 sm:h-28 text-olive-500 opacity-70 leaf-float"
            viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -301,8 +309,8 @@
         <circle cx="50" cy="74" r="5" opacity="0.7"/>
       </svg>
 
-      <div class="glass-card rounded-3xl p-8 sm:p-12 text-center relative">
-        <p class="font-display text-2xl sm:text-3xl md:text-4xl text-sepia-700 leading-relaxed max-w-xl mx-auto">
+      <div class="glass-card rounded-3xl p-6 sm:p-12 text-center relative">
+        <p class="font-display text-xl sm:text-3xl md:text-4xl text-sepia-700 leading-relaxed max-w-xl mx-auto">
           מוזמנות לבוקר של תנועה,
           <br/>
           <span class="text-terra-500">נשימה</span>
@@ -310,16 +318,16 @@
           <span class="text-olive-700">פשוטה</span>.
         </p>
 
-        <div class="mt-10">
+        <div class="mt-6 sm:mt-10">
           <button id="cta" type="button"
-             class="btn-primary inline-flex items-center gap-3 px-10 py-5 rounded-full
-                    font-display font-bold text-xl sm:text-2xl cursor-pointer">
+             class="btn-primary inline-flex items-center gap-2 sm:gap-3 px-6 sm:px-10 py-4 sm:py-5 rounded-full
+                    font-display font-bold text-lg sm:text-2xl cursor-pointer w-full sm:w-auto justify-center">
             <span>הרשמה לשיעור ניסיון</span>
-            <svg class="w-6 h-6 -scale-x-100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 -scale-x-100 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
             </svg>
           </button>
-          <p class="mt-4 font-body text-sm text-sepia-500">המקומות מוגבלים · הרשמה מראש</p>
+          <p class="mt-3 sm:mt-4 font-body text-xs sm:text-sm text-sepia-500">המקומות מוגבלים · הרשמה מראש</p>
         </div>
       </div>
     </section>
