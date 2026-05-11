@@ -158,7 +158,7 @@
       width: 100%;
       margin: 0 !important;
       padding: 0 !important;
-      overflow-x: hidden;
+      overflow-x: clip;             /* clip (not hidden) avoids creating a 2nd scroll container on iOS */
     }
     body {
       font-family: 'Assistant', system-ui, sans-serif;
@@ -167,6 +167,7 @@
       min-height: 100dvh;
       position: relative;
     }
+    img, svg, video, canvas { max-width: 100%; height: auto; }
 
     /* Paper grain removed: caused extra paints on iOS for no clear visual benefit */
 
@@ -245,13 +246,18 @@
     }
 
     /* Watercolor blobs (CSS-only, blurred radial gradients) */
+    /* Wash blobs live inside a fixed/clipped wrapper so they never extend the page */
+    .washes {
+      position: fixed;
+      inset: 0;
+      overflow: clip;
+      pointer-events: none;
+      z-index: 0;
+    }
     .wash {
       position: absolute; border-radius: 50%;
-      filter: blur(40px);                       /* no mix-blend-mode — iOS perf killer */
-      pointer-events: none;
+      filter: blur(40px);
       opacity: 0.4;
-      z-index: 0;
-      transform: translateZ(0);
     }
     .wash-terra  { background: radial-gradient(circle, #D9531E 0%, transparent 70%); }
     .wash-olive  { background: radial-gradient(circle, #8C9A5A 0%, transparent 70%); }
@@ -564,11 +570,14 @@
 
 <body>
 
-  <!-- Background washes (viewport-relative, never pixel-locked) -->
-  <div class="wash wash-terra" style="width:65vw; aspect-ratio:1; top:-20vw; left:-25vw;"></div>
-  <div class="wash wash-olive" style="width:75vw; aspect-ratio:1; top:30%; right:-30vw;"></div>
-  <div class="wash wash-wheat" style="width:55vw; aspect-ratio:1; top:65%; left:-20vw;"></div>
-  <div class="wash wash-wine"  style="width:50vw; aspect-ratio:1; bottom:-15vw; right:-15vw;"></div>
+  <!-- Background washes — fixed wrapper anchors them to the viewport and CLIPS overflow,
+       so they can't extend the page's scrollable area or create a second scrollbar. -->
+  <div class="washes" aria-hidden="true">
+    <div class="wash wash-terra" style="width:65vw; aspect-ratio:1; top:-20vw; left:-25vw;"></div>
+    <div class="wash wash-olive" style="width:75vw; aspect-ratio:1; top:30%; right:-30vw;"></div>
+    <div class="wash wash-wheat" style="width:55vw; aspect-ratio:1; top:65%; left:-20vw;"></div>
+    <div class="wash wash-wine"  style="width:50vw; aspect-ratio:1; bottom:-15vw; right:-15vw;"></div>
+  </div>
 
   <main class="page-shell">
 
