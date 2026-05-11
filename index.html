@@ -274,13 +274,9 @@
     .leaf-float.anim-paused        { animation-play-state: paused; }
     .logo-halo.anim-paused::before { animation-play-state: paused; }
 
-    /* Below-fold sections skip rendering until scrolled into view */
-    .event-section,
-    .invite-section,
-    .contact-section {
-      content-visibility: auto;
-      contain-intrinsic-size: 1px 600px;
-    }
+    /* content-visibility removed: it caused a one-frame stall as each
+       section first scrolled into view + a scrollbar jump from the
+       contain-intrinsic-size mismatch. Sections render upfront now. */
     @keyframes breathe {
       0%, 100% { transform: scale(1);   opacity: 0.85; }
       50%      { transform: scale(1.08); opacity: 1; }
