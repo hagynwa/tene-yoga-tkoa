@@ -193,6 +193,11 @@
     @media (max-width: 360px) {
       .logo-halo::before { inset: -16px; }
     }
+
+    /* Floating CTA only on md and below */
+    @media (min-width: 768px) {
+      #floating-cta { display: none !important; }
+    }
   </style>
 </head>
 
@@ -204,29 +209,39 @@
   <div class="wash wash-wheat" style="width:440px; height:440px; top:65%; left:-140px;"></div>
   <div class="wash wash-wine"  style="width:380px; height:380px; bottom:-120px; right:-100px;"></div>
 
-  <main class="relative z-10 max-w-3xl mx-auto px-4 sm:px-8 pt-4 sm:pt-10 pb-16 sm:pb-24">
+  <main class="relative z-10 max-w-3xl mx-auto px-4 sm:px-8 pt-3 sm:pt-10 pb-28 sm:pb-24">
 
-    <!-- HERO -->
-    <section class="text-center pt-2 pb-6 sm:pt-6 sm:pb-12 relative">
-      <div class="logo-halo mb-4 sm:mb-8 inline-block" data-anim="logo">
+    <!-- HERO — fills viewport on mobile, content centered vertically -->
+    <section class="text-center flex flex-col justify-center min-h-[calc(100vh-3rem)] sm:min-h-0 sm:pt-6 sm:pb-12 relative">
+      <div class="logo-halo mb-5 sm:mb-8 inline-block self-center" data-anim="logo">
         <img src="logo.jpg" alt="טנא יוגה משמחת — לוגו"
-             class="w-[200px] sm:w-[300px] md:w-[360px] h-auto rounded-full shadow-soft"
+             class="w-[230px] sm:w-[300px] md:w-[360px] h-auto rounded-full shadow-soft"
              loading="eager" decoding="async" />
       </div>
 
-      <h1 class="font-display font-black text-sepia-700 leading-[1.05] tracking-tight
-                 text-[2.4rem] sm:text-6xl md:text-7xl mb-2 sm:mb-3" data-anim="title">
+      <h1 class="font-display font-black text-sepia-700 leading-[1.02] tracking-tight
+                 text-[2.7rem] sm:text-6xl md:text-7xl mb-2 sm:mb-3" data-anim="title">
         <span class="block">טנא יוגה</span>
-        <span class="block text-terra-500 italic font-display font-normal text-[1.6rem] sm:text-4xl md:text-5xl mt-1 sm:mt-2">
+        <span class="block text-terra-500 italic font-display font-normal text-[1.8rem] sm:text-4xl md:text-5xl mt-1 sm:mt-2">
           משמחת.
         </span>
       </h1>
 
-      <p class="font-display text-lg sm:text-2xl md:text-3xl text-olive-700 mt-4 sm:mt-6 max-w-xl mx-auto" data-anim="subtitle">
+      <p class="font-display text-xl sm:text-2xl md:text-3xl text-olive-700 mt-4 sm:mt-6 max-w-xl mx-auto" data-anim="subtitle">
         טנא מגיע לתקוע
       </p>
 
-      <div class="mt-6 sm:mt-12 text-wheat-600 scroll-cue text-xs tracking-[0.3em] uppercase opacity-70" data-anim="cue">
+      <!-- Above-the-fold CTA -->
+      <div class="mt-6 sm:mt-10" data-anim="subtitle">
+        <button id="cta-hero" type="button"
+                class="btn-primary inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full
+                       font-display font-bold text-lg sm:text-xl cursor-pointer">
+          הרשמה לשיעור ניסיון ללא עלות
+        </button>
+        <p class="mt-3 font-body text-xs text-sepia-500">שישי · 8.5 · 08:30 · סטודיו של איתן</p>
+      </div>
+
+      <div class="mt-6 sm:mt-12 text-wheat-600 scroll-cue text-xs tracking-[0.3em] uppercase opacity-70 self-center" data-anim="cue">
         גלילה
       </div>
     </section>
@@ -348,6 +363,14 @@
     </section>
 
   </main>
+
+  <!-- FLOATING MOBILE CTA (appears after hero) -->
+  <div id="floating-cta" class="hidden md:hidden fixed bottom-4 left-4 right-4 z-40">
+    <button type="button" data-open-modal
+            class="btn-primary w-full py-4 rounded-full font-display font-bold text-lg shadow-warm">
+      הרשמה לשיעור ניסיון
+    </button>
+  </div>
 
   <!-- ENROLLMENT MODAL -->
   <div id="enroll-modal" class="hidden fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 bg-sepia-700/40 backdrop-blur-sm overflow-y-auto">

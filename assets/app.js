@@ -48,10 +48,24 @@ function resetForm() {
 }
 
 document.addEventListener('click', e => {
-  if (e.target.closest('#cta'))            { e.preventDefault(); openModal(); }
+  if (e.target.closest('#cta') || e.target.closest('#cta-hero') || e.target.closest('[data-open-modal]'))
+                                           { e.preventDefault(); openModal(); }
   if (e.target.closest('[data-close]'))    { closeModal(); }
   if (e.target === modal)                  { closeModal(); }
 });
+
+// Show floating mobile CTA once user has scrolled past the hero
+const floatingCTA = document.getElementById('floating-cta');
+if (floatingCTA) {
+  const heroEl = document.querySelector('[data-anim="logo"]');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) floatingCTA.classList.add('hidden');
+      else                      floatingCTA.classList.remove('hidden');
+    });
+  }, { threshold: 0 });
+  if (heroEl) io.observe(heroEl);
+}
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
 });
