@@ -193,7 +193,9 @@
       width: 100%;
       height: auto;
       border-radius: 50%;
-      box-shadow: 0 4px 24px -8px rgba(107,78,46,0.18);
+      box-shadow:
+        0 14px 32px -10px rgba(91, 67, 36, 0.30),
+        0 4px 12px -4px rgba(91, 67, 36, 0.15);
     }
 
     .hero-title  {
@@ -316,6 +318,101 @@
       box-shadow: 0 18px 40px -10px rgba(110, 125, 69, 0.7), inset 0 1px 0 rgba(255,255,255,0.2);
     }
     .btn-primary:active { transform: translateY(-1px); }
+
+    /* === SECTION DIVIDER (subtle olive-leaf accent) ================== */
+    .leaf-divider {
+      display: flex;
+      justify-content: center;
+      color: #B89040;
+      padding-block: clamp(0.5rem, 1.5vh, 1.25rem);
+    }
+    .leaf-divider svg { opacity: 0.65; }
+
+    /* === ABOUT ITAHEL ================================================ */
+    .about-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(1rem, 3vw, 1.75rem);
+      align-items: center;
+      padding-block: clamp(0.5rem, 1.5vh, 1.25rem);
+    }
+    @media (min-width: 40rem) {
+      .about-section {
+        grid-template-columns: 0.85fr 1fr;
+      }
+    }
+
+    .about-photo-wrap {
+      position: relative;
+      width: clamp(11rem, 50vw, 18rem);
+      margin-inline: auto;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow:
+        0 16px 36px -14px rgba(91, 67, 36, 0.32),
+        0 4px 12px -4px rgba(91, 67, 36, 0.18);
+    }
+    .about-photo-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 1px solid rgba(184, 144, 64, 0.45);
+      pointer-events: none;
+    }
+    .about-photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: inherit;
+    }
+
+    .about-text {
+      font-family: 'Frank Ruhl Libre', serif;
+      color: #3D2E1F;
+      line-height: 1.65;
+      text-align: right;
+    }
+    .about-text p {
+      font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+      margin-block: 0.65em;
+    }
+    .about-text p:first-of-type { margin-block-start: 0; }
+
+    .about-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 900;
+      color: #5A4327;
+      font-size: clamp(1.4rem, 5.5vw, 2rem);
+      line-height: 1.2;
+      margin-block-end: clamp(0.75rem, 2vw, 1rem);
+    }
+    .about-emoji { font-style: normal; font-family: system-ui; vertical-align: -0.05em; }
+
+    .accent-terra { color: #C44425; font-weight: 600; }
+    .accent-olive { color: #525E33; font-weight: 600; }
+    .accent-wine  { color: #5B4374; font-weight: 600; }
+
+    .about-cta-line { margin-block-start: clamp(0.85rem, 2vw, 1.25rem) !important; }
+    .about-cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'Frank Ruhl Libre', serif;
+      font-weight: 700;
+      color: #6E7D45;
+      text-decoration: none;
+      padding: 0.6rem 1.15rem;
+      border-radius: 999px;
+      border: 1.5px solid rgba(110, 125, 69, 0.4);
+      background: rgba(140, 154, 90, 0.06);
+      transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .about-cta-link:hover {
+      background: rgba(140, 154, 90, 0.16);
+      color: #525E33;
+      border-color: rgba(110, 125, 69, 0.6);
+    }
 
     /* === FLUID EVENT SECTION ========================================= */
     .event-section { padding-block: clamp(0.5rem, 1.2vh, 1rem); }
@@ -608,6 +705,54 @@
       </div>
     </section>
 
+    <!-- DIVIDER -->
+    <div class="leaf-divider" aria-hidden="true">
+      <svg viewBox="0 0 80 16" width="80" height="16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+        <path d="M2 8 H 32" opacity="0.5"/>
+        <ellipse cx="40" cy="8" rx="6" ry="2.5" fill="currentColor" stroke="none" opacity="0.7"/>
+        <path d="M48 8 H 78" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- ABOUT ITAHEL -->
+    <section class="about-section">
+      <div class="about-photo-wrap">
+        <img src="assets/ita.jpg" alt="איתהאל — מורת היוגה" class="about-photo" loading="lazy" decoding="async" width="600" height="1066" />
+      </div>
+      <div class="about-text">
+        <h2 class="about-title">נעים להכיר, איתהאל <span class="about-emoji">🙂</span></h2>
+
+        <p>
+          מזמינה אותך למפגש של <span class="accent-terra">יוגה עוצמתית-ורכה</span> —
+          מרחב של הקשבה לגוף, חיבור לנשימה ומציאת מרכז.
+        </p>
+
+        <p>
+          התרגול מותאם במיוחד לנשים, עם דגש וליווי ייחודי לתקופות
+          ה<span class="accent-olive">היריון והפוסט-פארטום</span> (לאחר לידה).
+        </p>
+
+        <p>
+          התרגול שלי שואב השראה מדרכה של <span class="accent-wine">ימימה אביטל</span>,
+          אותה אני לומדת ומתרגלת מזה כעשרים שנה. אדוות ה׳מלאכה׳ ושאר-הרוח של הלימוד
+          מתמזגים לתוך תנועות היוגה, והופכים את התרגול למסע אישי של התקרבות וגילוי.
+        </p>
+
+        <p class="about-cta-line">
+          <a href="#" data-open-modal class="about-cta-link">אשמח לראותך בשיעור 🌿</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- DIVIDER -->
+    <div class="leaf-divider" aria-hidden="true">
+      <svg viewBox="0 0 80 16" width="80" height="16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+        <path d="M2 8 H 32" opacity="0.5"/>
+        <ellipse cx="40" cy="8" rx="6" ry="2.5" fill="currentColor" stroke="none" opacity="0.7"/>
+        <path d="M48 8 H 78" opacity="0.5"/>
+      </svg>
+    </div>
+
     <!-- EVENT DETAILS — BIG TYPE -->
     <section class="event-section" data-reveal>
       <div class="event-heading">
@@ -649,6 +794,15 @@
         </a>
       </div>
     </section>
+
+    <!-- DIVIDER -->
+    <div class="leaf-divider" aria-hidden="true">
+      <svg viewBox="0 0 80 16" width="80" height="16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+        <path d="M2 8 H 32" opacity="0.5"/>
+        <ellipse cx="40" cy="8" rx="6" ry="2.5" fill="currentColor" stroke="none" opacity="0.7"/>
+        <path d="M48 8 H 78" opacity="0.5"/>
+      </svg>
+    </div>
 
     <!-- BOTANICALS + INVITATION -->
     <section class="invite-section" data-reveal>
