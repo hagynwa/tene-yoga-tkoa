@@ -55,7 +55,7 @@ function adminHtml(p: Record<string, string>) {
         </tr>
       </table>
       <p style="color: #8B6F47; font-size: 12px; margin-top: 20px; text-align: center;">
-        לצפייה בכל ההרשמות: <a href="https://tene-yoga-tkoa.r-hag.ai/admin.html" style="color: #6E7D45;">פאנל ניהול</a>
+        לצפייה בכל ההרשמות: <a href="https://tene-yoga.r-hag.ai/admin.html" style="color: #6E7D45;">פאנל ניהול</a>
       </p>
     </div>
   `;

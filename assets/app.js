@@ -272,7 +272,7 @@
       'DTEND;TZID=Asia/Jerusalem:' + dtEnd,
       'SUMMARY:' + summary.replace(/,/g, '\\,'),
       'LOCATION:' + location.replace(/,/g, '\\,'),
-      'DESCRIPTION:הרשמה דרך https://tene-yoga-tkoa.r-hag.ai',
+      'DESCRIPTION:הרשמה דרך https://tene-yoga.r-hag.ai',
       'END:VEVENT',
       'END:VCALENDAR'
     ].join('\r\n');

@@ -2,8 +2,8 @@
 
 Hebrew landing page for טנא יוגה משמחת with backoffice for managing classes and enrollments.
 
-**Live:** https://tene-yoga-tkoa.r-hag.ai
-**Admin:** https://tene-yoga-tkoa.r-hag.ai/admin.html
+**Live:** https://tene-yoga.r-hag.ai
+**Admin:** https://tene-yoga.r-hag.ai/admin.html
 
 ## Stack
 
@@ -26,7 +26,7 @@ Hebrew landing page for טנא יוגה משמחת with backoffice for managing 
 │   ├── schema.sql                              ← run in SQL editor (one time)
 │   └── functions/send-enrollment-email/
 │       └── index.ts                            ← email-sending Edge Function
-├── CNAME                                       ← tene-yoga-tkoa.r-hag.ai
+├── CNAME                                       ← tene-yoga.r-hag.ai
 └── .nojekyll
 ```
 
