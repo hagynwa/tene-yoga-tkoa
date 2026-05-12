@@ -31,9 +31,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload"
-        href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Suez+One&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bellefair&family=Frank+Ruhl+Libre:wght@900&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Suez+One&display=swap"
         as="style">
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Suez+One&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Frank+Ruhl+Libre:wght@900&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400;1,500&family=Suez+One&display=swap"
         rel="stylesheet">
 
 
@@ -95,8 +95,8 @@
     .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
     .font-bold { font-weight: 700; }
     .font-medium { font-weight: 500; }
-    .font-display { font-family: 'Frank Ruhl Libre', serif; }
-    .font-body { font-family: 'Frank Ruhl Libre', serif; }
+    .font-display { font-family: 'Bellefair', serif; }
+    .font-body { font-family: 'Bellefair', serif; }
     .uppercase { text-transform: uppercase; }
     .leading-tight { line-height: 1.25; }
     .tracking-\[0\.3em\] { letter-spacing: 0.3em; }
@@ -161,9 +161,10 @@
       overflow-x: clip;             /* clip (not hidden) avoids creating a 2nd scroll container on iOS */
     }
     body {
-      font-family: 'Frank Ruhl Libre', 'Cormorant Garamond', Georgia, serif;
+      font-family: 'Bellefair', 'Cormorant Garamond', Georgia, serif;
       font-weight: 400;
       color: #3D2E1F;
+      line-height: 1.55;                              /* Bellefair has small x-height; needs more leading */
       min-height: 100vh;
       min-height: 100dvh;
       position: relative;
@@ -205,7 +206,7 @@
     }
 
     .hero-title  {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Frank Ruhl Libre', 'Bellefair', serif;
       font-weight: 900;
       color: #3D2E1F;                                  /* darker editorial ink */
       line-height: 1.02;
@@ -215,20 +216,18 @@
     }
 
     .hero-subtitle {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       color: #6B4E2E;
-      font-style: italic;
-      font-weight: 500;
-      font-size: clamp(1rem, 3.4vw, 1.5rem);
+      font-size: clamp(1.05rem, 3.8vw, 1.6rem);
       max-width: 36rem;
       margin-inline: auto;
-      letter-spacing: 0.01em;
+      letter-spacing: 0.04em;                         /* Bellefair tracks lightly for elegance */
     }
 
     .hero-cta-wrap { margin-block-start: clamp(0.5rem, 1.5vh, 1rem); }
     .hero-cta-meta {
       margin-top: 0.75rem;
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       font-size: clamp(0.75rem, 2.6vw, 0.85rem);
       color: #8B6F47;
     }
@@ -392,19 +391,20 @@
     }
 
     .about-text {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       color: #3D2E1F;
-      line-height: 1.65;
+      line-height: 1.7;                                /* Bellefair body comfort */
       text-align: right;
+      letter-spacing: 0.01em;
     }
     .about-text p {
-      font-size: clamp(0.95rem, 3.5vw, 1.15rem);
-      margin-block: 0.65em;
+      font-size: clamp(1.05rem, 3.8vw, 1.25rem);
+      margin-block: 0.7em;
     }
     .about-text p:first-of-type { margin-block-start: 0; }
 
     .about-title {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       font-weight: 900;
       color: #5A4327;
       font-size: clamp(1.4rem, 5.5vw, 2rem);
@@ -422,7 +422,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       font-weight: 700;
       color: #6E7D45;
       text-decoration: none;
@@ -443,7 +443,7 @@
     .event-heading { text-align: center; margin-block-end: clamp(0.5rem, 1.2vh, 1rem); }
     .event-eyebrow {
       display: inline-block;
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       font-weight: 500;
       font-size: clamp(0.65rem, 2.5vw, 0.75rem);
       letter-spacing: 0.4em;
@@ -462,7 +462,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       font-size: clamp(0.8rem, 3vw, 1rem);
       color: #6B4E2E;
     }
@@ -483,7 +483,7 @@
     }
     .event-card-label {
       color: #5B4374;
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       font-size: clamp(0.65rem, 2.5vw, 0.75rem);
       letter-spacing: 0.3em;
       text-transform: uppercase;
@@ -498,13 +498,13 @@
       font-size: clamp(3rem, 12vw, 4.5rem);
     }
     .event-card-place {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       font-weight: 700;
       line-height: 1.15;
       font-size: clamp(1.15rem, 4.5vw, 1.85rem);
     }
     .event-card-sub {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       color: #6B4E2E;
       font-size: clamp(0.8rem, 3vw, 1rem);
       margin-block-start: 0.5rem;
@@ -529,7 +529,7 @@
       border-radius: 999px;
       background: rgba(110, 125, 69, 0.12);
       color: #525E33;
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       font-size: clamp(0.7rem, 2.6vw, 0.8rem);
       font-weight: 600;
     }
@@ -555,7 +555,7 @@
       position: relative;
     }
     .invite-text {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       color: #3D2E1F;
       line-height: 1.55;
       font-size: clamp(1.1rem, 4.5vw, 2rem);
@@ -568,7 +568,7 @@
       gap: 0.6rem;
       padding: clamp(0.85rem, 2vh, 1.25rem) clamp(1.5rem, 5vw, 2.5rem);
       border-radius: 999px;
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       font-weight: 700;
       font-size: clamp(1.05rem, 4vw, 1.5rem);
       cursor: pointer;
@@ -582,7 +582,7 @@
     }
     .invite-cta-meta {
       margin-block-start: 0.85rem;
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       font-size: clamp(0.7rem, 2.6vw, 0.875rem);
       color: #8B6F47;
     }
@@ -595,14 +595,14 @@
     }
     .contact-inner { display: inline-flex; flex-direction: column; align-items: center; gap: 0.25rem; }
     .contact-eyebrow {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       font-size: clamp(0.65rem, 2.5vw, 0.75rem);
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: #5B4374;
     }
     .contact-name {
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       font-weight: 700;
       font-size: clamp(1.3rem, 5vw, 1.75rem);
       color: #3D2E1F;
@@ -680,7 +680,7 @@
       width: 100%;
       padding-block: clamp(0.85rem, 2vh, 1.1rem);
       border-radius: 999px;
-      font-family: 'Frank Ruhl Libre', serif;
+      font-family: 'Bellefair', serif;
       font-weight: 700;
       font-size: clamp(1rem, 3.8vw, 1.15rem);
     }
