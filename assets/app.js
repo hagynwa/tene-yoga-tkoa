@@ -29,6 +29,8 @@
   }
 
   // ── Load classes via the security-definer RPC (includes spots_left) ──
+  // Falls back to plain SELECT on classes table if the function doesn't exist yet
+  // (e.g., migration not run). This way the site still shows classes.
   function loadActiveClasses() {
     if (!SUPA_OK) return Promise.resolve([]);
     return fetch(REST + '/rpc/classes_for_landing', {
@@ -36,8 +38,18 @@
       headers: Object.assign({ 'Content-Type': 'application/json' }, AUTH),
       body: '{}',
     })
-      .then(function (r) { return r.ok ? r.json() : []; })
-      .catch(function () { return []; });
+      .then(function (r) {
+        if (r.ok) return r.json();
+        // Function missing → fallback to plain SELECT (no spots_left)
+        console.warn('classes_for_landing RPC failed (status ' + r.status + '), falling back to plain SELECT');
+        return fetch(REST + '/classes?select=*&is_active=eq.true&order=date_iso.asc', {
+          headers: AUTH,
+        }).then(function (r2) { return r2.ok ? r2.json() : []; });
+      })
+      .catch(function (err) {
+        console.error('Class fetch failed:', err);
+        return [];
+      });
   }
 
   // ── Render the grid of class cards ──

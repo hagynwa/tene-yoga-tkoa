@@ -445,8 +445,8 @@
       display: inline-block;
       font-family: 'Bellefair', serif;
       font-weight: 500;
-      font-size: clamp(0.65rem, 2.5vw, 0.75rem);
-      letter-spacing: 0.4em;
+      font-size: clamp(0.85rem, 3vw, 0.95rem);
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: #5B4374;
       margin-block-end: 0.75rem;
@@ -610,8 +610,8 @@
     .contact-inner { display: inline-flex; flex-direction: column; align-items: center; gap: 0.25rem; }
     .contact-eyebrow {
       font-family: 'Bellefair', serif;
-      font-size: clamp(0.65rem, 2.5vw, 0.75rem);
-      letter-spacing: 0.3em;
+      font-size: clamp(0.85rem, 3vw, 0.95rem);
+      letter-spacing: 0.25em;
       text-transform: uppercase;
       color: #5B4374;
     }
@@ -658,11 +658,11 @@
     .classes-eyebrow {
       display: inline-block;
       font-family: 'Bellefair', serif;
-      font-size: clamp(0.7rem, 2.4vw, 0.85rem);
-      letter-spacing: 0.35em;
+      font-size: clamp(0.85rem, 3vw, 1rem);
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: #5B4374;
-      margin-block-end: 0.65rem;
+      margin-block-end: 0.75rem;
     }
     .classes-heading {
       font-family: 'Bellefair', serif;
@@ -726,21 +726,21 @@
     }
     .class-card-day {
       font-family: 'Bellefair', serif;
-      font-size: clamp(0.7rem, 2.5vw, 0.8rem);
-      letter-spacing: 0.3em;
+      font-size: clamp(0.85rem, 3vw, 0.95rem);
+      letter-spacing: 0.25em;
       text-transform: uppercase;
       color: #5B4374;
     }
-    .class-card-badges { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .class-card-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; }
     .class-badge {
       display: inline-flex;
       align-items: center;
       gap: 0.25rem;
       font-family: 'Bellefair', serif;
-      font-size: clamp(0.65rem, 2.3vw, 0.75rem);
-      padding: 0.2rem 0.65rem;
+      font-size: clamp(0.8rem, 2.8vw, 0.9rem);
+      padding: 0.25rem 0.75rem;
       border-radius: 999px;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
     }
     .class-badge-trial    { background: rgba(217, 194, 133, 0.32); color: #8E6E2D; }
     .class-badge-low      { background: rgba(196, 68, 37, 0.14);   color: #9E331A; }
@@ -758,24 +758,24 @@
     .class-card-hebrew-date {
       font-family: 'Bellefair', serif;
       color: #6B4E2E;
-      font-size: clamp(0.85rem, 2.8vw, 0.95rem);
+      font-size: clamp(0.95rem, 3.2vw, 1.1rem);
       letter-spacing: 0.02em;
       margin-block-start: -0.35rem;
     }
     .class-card-title {
       font-family: 'Bellefair', serif;
       color: #3D2E1F;
-      font-size: clamp(1.05rem, 3.6vw, 1.2rem);
+      font-size: clamp(1.15rem, 4vw, 1.35rem);
       margin-block-start: 0.25rem;
     }
     .class-card-meta {
       display: flex;
       flex-direction: column;
-      gap: 0.3rem;
+      gap: 0.4rem;
       font-family: 'Bellefair', serif;
       color: #6B4E2E;
-      font-size: clamp(0.85rem, 3vw, 0.95rem);
-      margin-block-start: 0.1rem;
+      font-size: clamp(0.95rem, 3.4vw, 1.1rem);
+      margin-block-start: 0.2rem;
     }
     .class-card-meta-row {
       display: inline-flex;
@@ -783,8 +783,8 @@
       gap: 0.5rem;
     }
     .class-card-meta-row svg {
-      width: 1rem;
-      height: 1rem;
+      width: 1.15rem;
+      height: 1.15rem;
       flex-shrink: 0;
       color: #B89040;
     }
@@ -848,6 +848,16 @@
     }
     .class-card-share:hover { background: rgba(217, 194, 133, 0.18); }
     .class-card-share svg { width: 1.1rem; height: 1.1rem; }
+
+    /* Form labels — bumped up from 0.75rem to a readable 0.95rem */
+    .form-label-text {
+      display: block;
+      font-family: 'Bellefair', serif;
+      font-size: clamp(0.95rem, 3vw, 1.05rem);
+      color: #6B4E2E;
+      margin-block-end: 0.4rem;
+      letter-spacing: 0.01em;
+    }
 
     /* Form: trial-class checkbox row */
     .trial-row {
@@ -997,10 +1007,10 @@
         מפגשי יוגה לנשים, בתקוע ובאבי הנחל
       </p>
 
-      <!-- Above-the-fold CTA (same component as the bottom CTA) -->
+      <!-- Above-the-fold CTA -->
       <div class="hero-cta-wrap" data-anim="subtitle">
         <button id="cta-hero" type="button" class="btn-primary invite-cta">
-          <span>הרשמה לשיעור ניסיון</span>
+          <span>הרשמה לשיעור</span>
           <svg class="invite-cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
           </svg>
@@ -1116,7 +1126,7 @@
   <!-- FLOATING MOBILE CTA (appears after hero) -->
   <div id="floating-cta" class="floating-cta hidden">
     <button type="button" data-open-modal class="btn-primary floating-cta-btn">
-      הרשמה לשיעור ניסיון
+      הרשמה לשיעור
     </button>
   </div>
 
@@ -1135,7 +1145,7 @@
 
       <form id="enroll-form" class="space-y-3">
         <label class="block" id="class-select-wrap">
-          <span class="font-body text-xs text-sepia-600 mb-1 block">לאיזה שיעור?</span>
+          <span class="form-label-text">לאיזה שיעור?</span>
           <select name="class_id" id="class-select"
                   class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-wheat-400/40 focus:border-terra-500 focus:outline-none transition appearance-none cursor-pointer"
                   style="background-image: url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2216%22 height=%2216%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%238B6F47%22 stroke-width=%222.4%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22m6 9 6 6 6-6%22/></svg>'); background-repeat: no-repeat; background-position: left 1rem center; padding-left: 2.5rem;">
@@ -1144,25 +1154,25 @@
         </label>
 
         <label class="block">
-          <span class="font-body text-xs text-sepia-600 mb-1 block">שם מלא *</span>
+          <span class="form-label-text">שם מלא *</span>
           <input name="name" type="text" required autocomplete="name"
                  class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-wheat-400/40 focus:border-terra-500 focus:outline-none transition" />
         </label>
 
         <label class="block">
-          <span class="font-body text-xs text-sepia-600 mb-1 block">טלפון *</span>
+          <span class="form-label-text">טלפון *</span>
           <input name="phone" type="tel" required autocomplete="tel" inputmode="tel" dir="ltr"
                  class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-wheat-400/40 focus:border-terra-500 focus:outline-none transition text-right" />
         </label>
 
         <label class="block">
-          <span class="font-body text-xs text-sepia-600 mb-1 block">אימייל (לא חובה)</span>
+          <span class="form-label-text">אימייל (לא חובה)</span>
           <input name="email" type="email" autocomplete="email" dir="ltr"
                  class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-wheat-400/40 focus:border-terra-500 focus:outline-none transition text-right" />
         </label>
 
         <label class="block">
-          <span class="font-body text-xs text-sepia-600 mb-1 block">הערות / שאלות (לא חובה)</span>
+          <span class="form-label-text">הערות / שאלות (לא חובה)</span>
           <textarea name="notes" rows="2"
                     class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-wheat-400/40 focus:border-terra-500 focus:outline-none transition resize-none"></textarea>
         </label>
