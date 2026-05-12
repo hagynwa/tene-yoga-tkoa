@@ -31,9 +31,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload"
-        href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;500;700;900&family=Assistant:wght@300;400;500;600;700&family=Suez+One&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Suez+One&display=swap"
         as="style">
-  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;500;700;900&family=Assistant:wght@300;400;500;600;700&family=Suez+One&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Suez+One&display=swap"
         rel="stylesheet">
 
 
@@ -96,7 +96,7 @@
     .font-bold { font-weight: 700; }
     .font-medium { font-weight: 500; }
     .font-display { font-family: 'Frank Ruhl Libre', serif; }
-    .font-body { font-family: 'Assistant', sans-serif; }
+    .font-body { font-family: 'Frank Ruhl Libre', serif; }
     .uppercase { text-transform: uppercase; }
     .leading-tight { line-height: 1.25; }
     .tracking-\[0\.3em\] { letter-spacing: 0.3em; }
@@ -161,12 +161,18 @@
       overflow-x: clip;             /* clip (not hidden) avoids creating a 2nd scroll container on iOS */
     }
     body {
-      font-family: 'Assistant', system-ui, sans-serif;
+      font-family: 'Frank Ruhl Libre', 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
       color: #3D2E1F;
       min-height: 100vh;
       min-height: 100dvh;
       position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
+    /* Numbers, dates, times, phone — switch to the elegant editorial Latin serif */
+    [dir="ltr"], .num, .meta-num { font-family: 'Cormorant Garamond', Georgia, serif; font-feature-settings: "lnum"; }
     img, svg, video, canvas { max-width: 100%; height: auto; }
 
     /* Paper grain removed: caused extra paints on iOS for no clear visual benefit */
@@ -201,27 +207,28 @@
     .hero-title  {
       font-family: 'Frank Ruhl Libre', serif;
       font-weight: 900;
-      color: #5A4327;                                  /* matches logo ink */
-      line-height: 1.05;
-      letter-spacing: -0.005em;
+      color: #3D2E1F;                                  /* darker editorial ink */
+      line-height: 1.02;
+      letter-spacing: -0.012em;
       font-size: clamp(1.85rem, 7vw, 4rem);
-      white-space: nowrap;                             /* keep brand on one line */
+      white-space: nowrap;
     }
 
     .hero-subtitle {
       font-family: 'Frank Ruhl Libre', serif;
-      color: #8B6F47;                   /* sepia mid-tone to match logo */
+      color: #6B4E2E;
       font-style: italic;
       font-weight: 500;
-      font-size: clamp(1rem, 3.6vw, 1.6rem);
+      font-size: clamp(1rem, 3.4vw, 1.5rem);
       max-width: 36rem;
       margin-inline: auto;
+      letter-spacing: 0.01em;
     }
 
     .hero-cta-wrap { margin-block-start: clamp(0.5rem, 1.5vh, 1rem); }
     .hero-cta-meta {
       margin-top: 0.75rem;
-      font-family: 'Assistant', sans-serif;
+      font-family: 'Frank Ruhl Libre', serif;
       font-size: clamp(0.75rem, 2.6vw, 0.85rem);
       color: #8B6F47;
     }
@@ -299,25 +306,36 @@
       box-shadow: 0 8px 32px -12px rgba(107, 78, 46, 0.22), inset 0 1px 0 rgba(255,255,255,0.6);
     }
 
-    /* CTA */
+    /* CTA — editorial pill, refined gradient + dual shadow for depth */
     .btn-primary {
       position: relative;
-      background: linear-gradient(135deg, #6E7D45 0%, #8C9A5A 60%, #A9B47A 100%);
+      background: linear-gradient(180deg, #7B8B52 0%, #6E7D45 50%, #5C6A38 100%);
       color: #FBF6E9;
-      box-shadow: 0 10px 28px -8px rgba(110, 125, 69, 0.55), inset 0 1px 0 rgba(255,255,255,0.2);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: 1px solid rgba(60, 70, 30, 0.25);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.22) inset,                /* top highlight */
+        0 -1px 0 rgba(0,0,0,0.18) inset,                     /* bottom inner */
+        0 10px 28px -10px rgba(82, 94, 51, 0.55),            /* close shadow */
+        0 22px 48px -16px rgba(82, 94, 51, 0.35);            /* diffused shadow */
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+      letter-spacing: 0.005em;
     }
     .btn-primary::after {
       content: '';
       position: absolute; inset: 0; border-radius: inherit;
-      background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent 40%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.16), transparent 35%);
       pointer-events: none;
     }
     .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 18px 40px -10px rgba(110, 125, 69, 0.7), inset 0 1px 0 rgba(255,255,255,0.2);
+      transform: translateY(-2px);
+      filter: brightness(1.04);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.22) inset,
+        0 -1px 0 rgba(0,0,0,0.18) inset,
+        0 16px 34px -10px rgba(82, 94, 51, 0.65),
+        0 28px 56px -16px rgba(82, 94, 51, 0.40);
     }
-    .btn-primary:active { transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); filter: brightness(0.98); }
 
     /* === SECTION DIVIDER (subtle olive-leaf accent) ================== */
     .leaf-divider {
@@ -346,25 +364,31 @@
       position: relative;
       width: clamp(11rem, 50vw, 18rem);
       margin-inline: auto;
-      border-radius: 1.25rem;
-      overflow: hidden;
-      box-shadow:
-        0 16px 36px -14px rgba(91, 67, 36, 0.32),
-        0 4px 12px -4px rgba(91, 67, 36, 0.18);
+      isolation: isolate;
     }
-    .about-photo-wrap::after {
-      content: '';
+    /* Decorative olive sprig peeking out from behind the photo */
+    .about-photo-leaf {
       position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      border: 1px solid rgba(184, 144, 64, 0.45);
-      pointer-events: none;
+      width: clamp(3rem, 14vw, 5rem);
+      height: auto;
+      color: #8C9A5A;
+      top: -1.25rem;
+      right: -1rem;
+      z-index: 0;
+      transform: rotate(18deg);
+      filter: blur(0.4px);
     }
     .about-photo {
+      position: relative;
+      z-index: 1;
       display: block;
       width: 100%;
       height: auto;
-      border-radius: inherit;
+      border-radius: 1.25rem;
+      box-shadow:
+        0 18px 40px -16px rgba(91, 67, 36, 0.35),
+        0 4px 14px -4px rgba(91, 67, 36, 0.20),
+        0 0 0 1px rgba(184, 144, 64, 0.45);
     }
 
     .about-text {
@@ -419,7 +443,7 @@
     .event-heading { text-align: center; margin-block-end: clamp(0.5rem, 1.2vh, 1rem); }
     .event-eyebrow {
       display: inline-block;
-      font-family: 'Assistant', sans-serif;
+      font-family: 'Frank Ruhl Libre', serif;
       font-weight: 500;
       font-size: clamp(0.65rem, 2.5vw, 0.75rem);
       letter-spacing: 0.4em;
@@ -438,7 +462,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-family: 'Assistant', sans-serif;
+      font-family: 'Frank Ruhl Libre', serif;
       font-size: clamp(0.8rem, 3vw, 1rem);
       color: #6B4E2E;
     }
@@ -459,16 +483,19 @@
     }
     .event-card-label {
       color: #5B4374;
-      font-family: 'Assistant', sans-serif;
+      font-family: 'Frank Ruhl Libre', serif;
       font-size: clamp(0.65rem, 2.5vw, 0.75rem);
       letter-spacing: 0.3em;
       text-transform: uppercase;
       margin-block-end: 0.5rem;
     }
     .event-card-big {
-      font-family: 'Suez One', serif;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      font-style: italic;
       line-height: 1;
-      font-size: clamp(2.5rem, 10vw, 3.75rem);
+      letter-spacing: -0.01em;
+      font-size: clamp(3rem, 12vw, 4.5rem);
     }
     .event-card-place {
       font-family: 'Frank Ruhl Libre', serif;
@@ -502,7 +529,7 @@
       border-radius: 999px;
       background: rgba(110, 125, 69, 0.12);
       color: #525E33;
-      font-family: 'Assistant', sans-serif;
+      font-family: 'Frank Ruhl Libre', serif;
       font-size: clamp(0.7rem, 2.6vw, 0.8rem);
       font-weight: 600;
     }
@@ -555,7 +582,7 @@
     }
     .invite-cta-meta {
       margin-block-start: 0.85rem;
-      font-family: 'Assistant', sans-serif;
+      font-family: 'Frank Ruhl Libre', serif;
       font-size: clamp(0.7rem, 2.6vw, 0.875rem);
       color: #8B6F47;
     }
@@ -568,7 +595,7 @@
     }
     .contact-inner { display: inline-flex; flex-direction: column; align-items: center; gap: 0.25rem; }
     .contact-eyebrow {
-      font-family: 'Assistant', sans-serif;
+      font-family: 'Frank Ruhl Libre', serif;
       font-size: clamp(0.65rem, 2.5vw, 0.75rem);
       letter-spacing: 0.3em;
       text-transform: uppercase;
@@ -582,12 +609,15 @@
       margin-block-start: 0.25rem;
     }
     .contact-phone {
-      font-family: 'Assistant', sans-serif;
-      font-size: clamp(1rem, 4vw, 1.25rem);
-      color: #D9531E;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      font-style: italic;
+      font-size: clamp(1.1rem, 4.4vw, 1.4rem);
+      color: #C44425;
       text-decoration: none;
       margin-block-start: 0.25rem;
       transition: color 0.2s;
+      letter-spacing: 0.02em;
     }
     .contact-phone:hover { color: #9E331A; }
     .contact-wa {
@@ -707,16 +737,27 @@
 
     <!-- DIVIDER -->
     <div class="leaf-divider" aria-hidden="true">
-      <svg viewBox="0 0 80 16" width="80" height="16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
-        <path d="M2 8 H 32" opacity="0.5"/>
-        <ellipse cx="40" cy="8" rx="6" ry="2.5" fill="currentColor" stroke="none" opacity="0.7"/>
-        <path d="M48 8 H 78" opacity="0.5"/>
+      <svg viewBox="0 0 120 18" width="120" height="18" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round">
+        <path d="M4 9 H 50" opacity="0.4"/>
+        <ellipse cx="55" cy="9" rx="4.5" ry="2" transform="rotate(-22 55 9)" fill="currentColor" stroke="none" opacity="0.7"/>
+        <circle cx="60" cy="9" r="1.2" fill="currentColor" stroke="none"/>
+        <ellipse cx="65" cy="9" rx="4.5" ry="2" transform="rotate(22 65 9)" fill="currentColor" stroke="none" opacity="0.7"/>
+        <path d="M70 9 H 116" opacity="0.4"/>
       </svg>
     </div>
 
     <!-- ABOUT ITAHEL -->
     <section class="about-section">
       <div class="about-photo-wrap">
+        <svg class="about-photo-leaf" viewBox="0 0 80 120" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true">
+          <path d="M40 5 C 42 20, 38 40, 40 60 C 42 80, 38 100, 40 115" opacity="0.7"/>
+          <ellipse cx="28" cy="22" rx="13" ry="4.5" transform="rotate(-32 28 22)" fill="currentColor" opacity="0.45"/>
+          <ellipse cx="52" cy="34" rx="13" ry="4.5" transform="rotate(32 52 34)" fill="currentColor" opacity="0.45"/>
+          <ellipse cx="26" cy="50" rx="13" ry="4.5" transform="rotate(-32 26 50)" fill="currentColor" opacity="0.4"/>
+          <ellipse cx="54" cy="62" rx="13" ry="4.5" transform="rotate(32 54 62)" fill="currentColor" opacity="0.4"/>
+          <ellipse cx="28" cy="78" rx="13" ry="4.5" transform="rotate(-32 28 78)" fill="currentColor" opacity="0.35"/>
+          <ellipse cx="52" cy="90" rx="13" ry="4.5" transform="rotate(32 52 90)" fill="currentColor" opacity="0.35"/>
+        </svg>
         <img src="assets/ita.jpg" alt="איתהאל — מורת היוגה" class="about-photo" loading="lazy" decoding="async" width="600" height="1066" />
       </div>
       <div class="about-text">
@@ -746,10 +787,12 @@
 
     <!-- DIVIDER -->
     <div class="leaf-divider" aria-hidden="true">
-      <svg viewBox="0 0 80 16" width="80" height="16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
-        <path d="M2 8 H 32" opacity="0.5"/>
-        <ellipse cx="40" cy="8" rx="6" ry="2.5" fill="currentColor" stroke="none" opacity="0.7"/>
-        <path d="M48 8 H 78" opacity="0.5"/>
+      <svg viewBox="0 0 120 18" width="120" height="18" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round">
+        <path d="M4 9 H 50" opacity="0.4"/>
+        <ellipse cx="55" cy="9" rx="4.5" ry="2" transform="rotate(-22 55 9)" fill="currentColor" stroke="none" opacity="0.7"/>
+        <circle cx="60" cy="9" r="1.2" fill="currentColor" stroke="none"/>
+        <ellipse cx="65" cy="9" rx="4.5" ry="2" transform="rotate(22 65 9)" fill="currentColor" stroke="none" opacity="0.7"/>
+        <path d="M70 9 H 116" opacity="0.4"/>
       </svg>
     </div>
 
@@ -797,10 +840,12 @@
 
     <!-- DIVIDER -->
     <div class="leaf-divider" aria-hidden="true">
-      <svg viewBox="0 0 80 16" width="80" height="16" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
-        <path d="M2 8 H 32" opacity="0.5"/>
-        <ellipse cx="40" cy="8" rx="6" ry="2.5" fill="currentColor" stroke="none" opacity="0.7"/>
-        <path d="M48 8 H 78" opacity="0.5"/>
+      <svg viewBox="0 0 120 18" width="120" height="18" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round">
+        <path d="M4 9 H 50" opacity="0.4"/>
+        <ellipse cx="55" cy="9" rx="4.5" ry="2" transform="rotate(-22 55 9)" fill="currentColor" stroke="none" opacity="0.7"/>
+        <circle cx="60" cy="9" r="1.2" fill="currentColor" stroke="none"/>
+        <ellipse cx="65" cy="9" rx="4.5" ry="2" transform="rotate(22 65 9)" fill="currentColor" stroke="none" opacity="0.7"/>
+        <path d="M70 9 H 116" opacity="0.4"/>
       </svg>
     </div>
 
