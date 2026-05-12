@@ -89,7 +89,8 @@ async function loadClasses() {
           </div>
         </div>
       </div>
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2 flex-wrap justify-end">
+        ${c.is_trial ? '<span class="pill pill-trial">ניסיון</span>' : ''}
         <span class="pill ${c.is_active ? 'pill-active' : 'pill-inactive'}">${c.is_active ? 'פעיל' : 'לא פעיל'}</span>
         <button class="btn-ghost px-3 py-1 rounded-full text-xs" data-edit="${c.id}">עריכה</button>
         <button class="btn-ghost px-3 py-1 rounded-full text-xs text-terra-600" data-del="${c.id}">מחיקה</button>
@@ -121,7 +122,7 @@ function openClassModal(cls) {
   const m = $('#class-modal');
   $('#class-modal-title').textContent = cls ? 'עריכת שיעור' : 'שיעור חדש';
   $('#cls-id').value         = cls?.id || '';
-  $('#cls-title').value      = cls?.title || 'שיעור ניסיון';
+  $('#cls-title').value      = cls?.title || 'שיעור יוגה לנשים';
   $('#cls-date-iso').value   = cls?.date_iso || '';
   $('#cls-date-disp').value  = cls?.date_display || '';
   $('#cls-hebrew').value     = cls?.hebrew_date || '';
@@ -131,6 +132,8 @@ function openClassModal(cls) {
   $('#cls-loc-2').value      = cls?.location_line2 || 'תכלת מרדכי 529, תקוע';
   $('#cls-capacity').value   = cls?.capacity ?? 20;
   $('#cls-active').checked   = cls?.is_active ?? true;
+  $('#cls-trial').checked    = cls?.is_trial ?? false;
+  $('#cls-waze-url').value   = cls?.waze_url || '';
   $('#cls-notes').value      = cls?.notes || '';
   $('#class-error').classList.add('hidden');
   m.classList.remove('hidden');
@@ -157,6 +160,8 @@ $('#class-form').addEventListener('submit', async (e) => {
     location_line2: $('#cls-loc-2').value.trim() || null,
     capacity:       parseInt($('#cls-capacity').value, 10) || null,
     is_active:      $('#cls-active').checked,
+    is_trial:       $('#cls-trial').checked,
+    waze_url:       $('#cls-waze-url').value.trim() || null,
     notes:          $('#cls-notes').value.trim() || null,
   };
 
@@ -175,7 +180,7 @@ let allEnrollments = [];
 async function loadEnrollments() {
   const { data, error } = await supa
     .from('enrollments')
-    .select('id, name, phone, email, notes, created_at, class_id, classes(title, date_display, hebrew_date)')
+    .select('id, name, phone, email, notes, is_trial, created_at, class_id, classes(title, date_display, hebrew_date)')
     .order('created_at', { ascending: false });
   const tb = $('#enrollments-tbody');
   if (error) { tb.innerHTML = `<tr><td colspan="7" class="px-4 py-6 text-terra-600">שגיאה: ${error.message}</td></tr>`; return; }
@@ -197,6 +202,7 @@ function renderEnrollments() {
       <td class="px-3 sm:px-4 py-3" dir="ltr"><a href="tel:${esc(r.phone)}" class="text-terra-600 hover:underline">${esc(r.phone)}</a></td>
       <td class="px-4 py-3 hidden md:table-cell" dir="ltr">${r.email ? `<a href="mailto:${esc(r.email)}" class="text-terra-600 hover:underline">${esc(r.email)}</a>` : '—'}</td>
       <td class="px-4 py-3 text-sepia-600 hidden sm:table-cell">${r.classes ? esc(`${r.classes.date_display} · ${r.classes.title}`) : '—'}</td>
+      <td class="px-3 py-3 hidden sm:table-cell">${r.is_trial ? '<span class="pill pill-trial">ניסיון</span>' : '<span class="pill pill-regular">רגיל</span>'}</td>
       <td class="px-4 py-3 text-sepia-500 max-w-xs truncate hidden lg:table-cell">${esc(r.notes || '')}</td>
       <td class="px-4 py-3 text-sepia-500 text-xs hidden md:table-cell" dir="ltr">${formatDate(r.created_at)}</td>
       <td class="px-2 py-3"><button class="text-terra-600 text-xs hover:underline" data-del-enr="${r.id}">מחיקה</button></td>

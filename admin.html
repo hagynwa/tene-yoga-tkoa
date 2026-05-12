@@ -43,6 +43,8 @@
     .pill { display: inline-block; padding: 0.15rem 0.65rem; border-radius: 999px; font-size: 0.75rem; }
     .pill-active   { background: rgba(140,154,90,0.2);  color: #525E33; }
     .pill-inactive { background: rgba(196,68,37,0.15);  color: #9E331A; }
+    .pill-trial    { background: rgba(217,194,133,0.30); color: #8E6E2D; }
+    .pill-regular  { background: rgba(184,144,64,0.12);  color: #6B4E2E; }
   </style>
 </head>
 <body class="min-h-screen">
@@ -127,6 +129,7 @@
                   <th class="px-3 sm:px-4 py-3 text-right">טלפון</th>
                   <th class="px-4 py-3 text-right hidden md:table-cell">אימייל</th>
                   <th class="px-4 py-3 text-right hidden sm:table-cell">שיעור</th>
+                  <th class="px-3 py-3 text-right hidden sm:table-cell">סוג</th>
                   <th class="px-4 py-3 text-right hidden lg:table-cell">הערות</th>
                   <th class="px-4 py-3 text-right hidden md:table-cell">תאריך הרשמה</th>
                   <th class="px-2 py-3"></th>
@@ -186,8 +189,14 @@
         <label><span class="text-xs text-sepia-500 block mb-1">קיבולת</span>
           <input id="cls-capacity" type="number" class="input w-full" value="20" />
         </label>
-        <label class="flex items-center sm:items-end gap-2 pb-2 pt-2 sm:pt-0"><input id="cls-active" type="checkbox" class="w-5 h-5" checked />
+        <label class="sm:col-span-2"><span class="text-xs text-sepia-500 block mb-1">קישור Waze (לא חובה)</span>
+          <input id="cls-waze-url" class="input w-full" placeholder="https://waze.com/ul/..." dir="ltr" />
+        </label>
+        <label class="flex items-center gap-2 pb-2 pt-2 sm:pt-0"><input id="cls-active" type="checkbox" class="w-5 h-5" checked />
           <span class="text-sepia-700">פעיל (יוצג באתר)</span>
+        </label>
+        <label class="flex items-center gap-2 pb-2 pt-2 sm:pt-0"><input id="cls-trial" type="checkbox" class="w-5 h-5" />
+          <span class="text-sepia-700">שיעור ניסיון</span>
         </label>
 
         <label class="sm:col-span-2"><span class="text-xs text-sepia-500 block mb-1">הערות פנימיות</span>

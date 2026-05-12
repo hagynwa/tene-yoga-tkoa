@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>טנא יוגה משמחת · שיעור היכרות בתקוע</title>
-  <meta name="description" content="טנא יוגה משמחת · שיעור היכרות ללא עלות בסטודיו של איתן בתקוע, שישי כ״א באייר" />
+  <title>טנא - יוגה משמחת · מפגשי יוגה לנשים</title>
+  <meta name="description" content="מפגשי יוגה לנשים בתקוע ובאבי הנחל · מורת יוגה איתהאל" />
 
   <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
   <meta property="og:type"            content="website" />
   <meta property="og:site_name"       content="טנא יוגה משמחת" />
-  <meta property="og:title"           content="טנא יוגה משמחת · שיעור היכרות בתקוע" />
-  <meta property="og:description"     content="שישי כ״א באייר · 08:30 · סטודיו של איתן · שיעור היכרות ללא עלות" />
+  <meta property="og:title"           content="טנא - יוגה משמחת · מפגשי יוגה לנשים" />
+  <meta property="og:description"     content="מפגשי יוגה לנשים · בתקוע ובאבי הנחל" />
   <meta property="og:url"             content="https://tene-yoga-tkoa.r-hag.ai/" />
   <meta property="og:image"           content="https://tene-yoga-tkoa.r-hag.ai/logo.jpg?v=3" />
   <meta property="og:image:secure_url" content="https://tene-yoga-tkoa.r-hag.ai/logo.jpg?v=3" />
@@ -22,8 +22,8 @@
 
   <!-- Twitter / X -->
   <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="טנא יוגה משמחת · שיעור היכרות בתקוע" />
-  <meta name="twitter:description" content="שישי כ״א באייר · 08:30 · סטודיו של איתן · שיעור היכרות ללא עלות" />
+  <meta name="twitter:title"       content="טנא - יוגה משמחת · מפגשי יוגה לנשים" />
+  <meta name="twitter:description" content="מפגשי יוגה לנשים · בתקוע ובאבי הנחל" />
   <meta name="twitter:image"       content="https://tene-yoga-tkoa.r-hag.ai/logo.jpg?v=3" />
 
   <link rel="icon" type="image/jpeg" href="logo.jpg" />
@@ -543,10 +543,21 @@
       position: relative;
       z-index: 10;
       width: 100%;
-      max-width: 48rem;
+      max-width: 64rem;                                /* 1024px on desktop */
       margin-inline: auto;
-      padding-inline: clamp(0.85rem, 4vw, 2.25rem);
+      padding-inline: clamp(0.85rem, 4vw, 2.5rem);
       padding-block: clamp(0.25rem, 0.5vh, 0.75rem) clamp(4.5rem, 9vh, 4.5rem);
+    }
+    /* Inner content blocks stay narrow for comfortable reading */
+    .hero-section,
+    .about-section,
+    .contact-section {
+      max-width: 44rem;
+      margin-inline: auto;
+    }
+    /* About: switch to side-by-side at sm+, with photo on the right (RTL natural) */
+    @media (min-width: 40rem) {
+      .about-section { max-width: 48rem; }
     }
 
     /* === INVITATION SECTION ========================================= */
@@ -641,6 +652,272 @@
       letter-spacing: 0.6em;
     }
 
+    /* === CLASSES SECTION (NEW — multi-class registration grid) === */
+    .classes-section { padding-block: clamp(0.75rem, 2vh, 1.5rem); }
+    .classes-header  { text-align: center; margin-block-end: clamp(1rem, 2.5vh, 1.75rem); }
+    .classes-eyebrow {
+      display: inline-block;
+      font-family: 'Bellefair', serif;
+      font-size: clamp(0.7rem, 2.4vw, 0.85rem);
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #5B4374;
+      margin-block-end: 0.65rem;
+    }
+    .classes-heading {
+      font-family: 'Bellefair', serif;
+      color: #3D2E1F;
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+      font-size: clamp(2rem, 7vw, 3.25rem);
+    }
+    .classes-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(0.85rem, 2.5vw, 1.25rem);
+    }
+    @media (min-width: 40rem) {
+      .classes-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 64rem) {
+      .classes-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .classes-empty {
+      text-align: center;
+      font-family: 'Bellefair', serif;
+      color: #8B6F47;
+      padding-block: 1.5rem;
+    }
+
+    /* ---- Single class card ---- */
+    .class-card {
+      position: relative;
+      background: linear-gradient(135deg, rgba(255,251,233,0.94), rgba(246,234,208,0.88));
+      border: 1px solid rgba(184, 144, 64, 0.32);
+      border-radius: clamp(0.85rem, 2vw, 1.15rem);
+      padding: clamp(1rem, 3vw, 1.4rem);
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      box-shadow:
+        0 8px 24px -14px rgba(107, 78, 46, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .class-card:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 14px 30px -14px rgba(107, 78, 46, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
+    }
+    .class-card-skeleton {
+      min-height: 14rem;
+      opacity: 0.35;
+      animation: skeleton-shimmer 1.6s ease-in-out infinite;
+    }
+    @keyframes skeleton-shimmer { 0%,100%{opacity:0.25} 50%{opacity:0.45} }
+
+    .class-card-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .class-card-day {
+      font-family: 'Bellefair', serif;
+      font-size: clamp(0.7rem, 2.5vw, 0.8rem);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #5B4374;
+    }
+    .class-card-badges { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+    .class-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: 'Bellefair', serif;
+      font-size: clamp(0.65rem, 2.3vw, 0.75rem);
+      padding: 0.2rem 0.65rem;
+      border-radius: 999px;
+      letter-spacing: 0.04em;
+    }
+    .class-badge-trial    { background: rgba(217, 194, 133, 0.32); color: #8E6E2D; }
+    .class-badge-low      { background: rgba(196, 68, 37, 0.14);   color: #9E331A; }
+    .class-badge-good     { background: rgba(140, 154, 90, 0.18);  color: #525E33; }
+
+    .class-card-date {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      font-size: clamp(2.6rem, 9vw, 3.5rem);
+      line-height: 1;
+      letter-spacing: -0.025em;
+      color: #C44425;
+      font-feature-settings: "lnum" 1;
+    }
+    .class-card-hebrew-date {
+      font-family: 'Bellefair', serif;
+      color: #6B4E2E;
+      font-size: clamp(0.85rem, 2.8vw, 0.95rem);
+      letter-spacing: 0.02em;
+      margin-block-start: -0.35rem;
+    }
+    .class-card-title {
+      font-family: 'Bellefair', serif;
+      color: #3D2E1F;
+      font-size: clamp(1.05rem, 3.6vw, 1.2rem);
+      margin-block-start: 0.25rem;
+    }
+    .class-card-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      font-family: 'Bellefair', serif;
+      color: #6B4E2E;
+      font-size: clamp(0.85rem, 3vw, 0.95rem);
+      margin-block-start: 0.1rem;
+    }
+    .class-card-meta-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .class-card-meta-row svg {
+      width: 1rem;
+      height: 1rem;
+      flex-shrink: 0;
+      color: #B89040;
+    }
+    .class-card-meta-row [dir="ltr"] {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      font-style: italic;
+      font-size: 1.08em;
+    }
+    .class-card-waze {
+      color: #525E33;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .class-card-waze:hover { color: #6E7D45; }
+
+    .class-card-actions {
+      display: flex;
+      gap: 0.6rem;
+      align-items: stretch;
+      margin-block-start: auto;
+      padding-block-start: 0.6rem;
+    }
+    .class-card-register {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding-block: 0.75rem;
+      border-radius: 999px;
+      font-family: 'Bellefair', serif;
+      font-size: clamp(0.95rem, 3.2vw, 1.05rem);
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      border: 1px solid rgba(60, 70, 30, 0.25);
+      background: linear-gradient(180deg, #7B8B52 0%, #6E7D45 50%, #5C6A38 100%);
+      color: #FBF6E9;
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.22) inset,
+        0 -1px 0 rgba(0,0,0,0.18) inset,
+        0 6px 16px -6px rgba(82, 94, 51, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    }
+    .class-card-register:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+    .class-card-share {
+      width: 2.6rem;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: transparent;
+      border: 1px solid rgba(184, 144, 64, 0.42);
+      color: #6B4E2E;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    .class-card-share:hover { background: rgba(217, 194, 133, 0.18); }
+    .class-card-share svg { width: 1.1rem; height: 1.1rem; }
+
+    /* Form: trial-class checkbox row */
+    .trial-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.65rem 0.85rem;
+      border: 1px dashed rgba(184, 144, 64, 0.5);
+      border-radius: 0.65rem;
+      background: rgba(217, 194, 133, 0.10);
+      cursor: pointer;
+      font-family: 'Bellefair', serif;
+      color: #6B4E2E;
+    }
+    .trial-row input[type="checkbox"] {
+      width: 1.1rem; height: 1.1rem;
+      accent-color: #6E7D45;
+      flex-shrink: 0;
+    }
+    .trial-row-text { font-size: 0.95rem; }
+
+    /* Success state: side-by-side actions */
+    .success-actions {
+      margin-block-start: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: stretch;
+    }
+    .ics-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1rem;
+      border-radius: 999px;
+      background: transparent;
+      border: 1.5px solid rgba(110, 125, 69, 0.4);
+      color: #525E33;
+      font-family: 'Bellefair', serif;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .ics-btn:hover { background: rgba(140, 154, 90, 0.12); }
+    .ics-btn svg   { width: 1.05rem; height: 1.05rem; }
+
+    /* Toast for "link copied" feedback */
+    .share-toast {
+      position: fixed;
+      bottom: max(1.5rem, env(safe-area-inset-bottom));
+      left: 50%;
+      transform: translate(-50%, 100%);
+      background: #3D2E1F;
+      color: #FBF6E9;
+      padding: 0.65rem 1.25rem;
+      border-radius: 999px;
+      font-family: 'Bellefair', serif;
+      font-size: 0.95rem;
+      box-shadow: 0 12px 28px -10px rgba(0,0,0,0.4);
+      pointer-events: none;
+      opacity: 0;
+      z-index: 60;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+    .share-toast.show {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
     /* Section divider — hand-drawn wavy line */
     .wavy {
       width: 100%; height: 2.25rem;
@@ -717,7 +994,7 @@
       <h1 class="hero-title" data-anim="title">טנא - יוגה משמחת</h1>
 
       <p class="hero-subtitle" data-anim="subtitle">
-        טנא מגיע לתקוע
+        מפגשי יוגה לנשים, בתקוע ובאבי הנחל
       </p>
 
       <!-- Above-the-fold CTA (same component as the bottom CTA) -->
@@ -798,104 +1075,19 @@
       </svg>
     </div>
 
-    <!-- EVENT DETAILS — BIG TYPE -->
-    <section class="event-section" data-reveal>
-      <div class="event-heading">
-        <span class="event-eyebrow">שיעור היכרות</span>
-        <h2 class="event-headline">ללא עלות</h2>
-        <div class="event-byline">
-          <span class="event-byline-line"></span>
-          <span>הזמנה אישית מאיתהאל</span>
-          <span class="event-byline-line"></span>
-        </div>
+    <!-- CLASSES (dynamic list, populated by app.js) -->
+    <section class="classes-section">
+      <header class="classes-header">
+        <span class="classes-eyebrow">שיעורים פתוחים להרשמה</span>
+        <h2 class="classes-heading">בחרי שיעור</h2>
+      </header>
+      <div id="classes-grid" class="classes-grid" aria-live="polite">
+        <!-- Placeholders rendered while fetching -->
+        <article class="class-card class-card-skeleton"></article>
+        <article class="class-card class-card-skeleton"></article>
+        <article class="class-card class-card-skeleton"></article>
       </div>
-
-      <div class="event-grid">
-        <article class="glass-card event-card" data-reveal>
-          <div class="event-card-label">שישי הבא</div>
-          <div id="cls-date" class="event-card-big text-terra-600">8.5</div>
-          <div id="cls-hebrew" class="event-card-sub">כ״א באייר</div>
-        </article>
-
-        <article class="glass-card event-card" data-reveal>
-          <div class="event-card-label">שיעור בוקר</div>
-          <div id="cls-time" class="event-card-big text-olive-700" dir="ltr">8:30</div>
-          <div id="cls-time-end" class="event-card-sub">עד 09:45</div>
-        </article>
-
-        <a id="cls-waze" href="https://waze.com/ul/hsv9h1ddzb"
-           target="_blank" rel="noopener noreferrer"
-           class="glass-card event-card event-card-link" data-reveal
-           aria-label="ניווט בוויז לסטודיו של איתן">
-          <div class="event-card-label">המיקום</div>
-          <div id="cls-place-1" class="event-card-place text-wine-500">סטודיו של איתן</div>
-          <div id="cls-place-2" class="event-card-sub">תכלת מרדכי 529, תקוע</div>
-          <div class="event-card-action">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 22s-8-9.5-8-14a8 8 0 0 1 16 0c0 4.5-8 14-8 14Z"/><circle cx="12" cy="8" r="2.5"/>
-            </svg>
-            <span>פתח בוויז</span>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <!-- DIVIDER -->
-    <div class="leaf-divider" aria-hidden="true">
-      <svg viewBox="0 0 120 18" width="120" height="18" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round">
-        <path d="M4 9 H 50" opacity="0.4"/>
-        <ellipse cx="55" cy="9" rx="4.5" ry="2" transform="rotate(-22 55 9)" fill="currentColor" stroke="none" opacity="0.7"/>
-        <circle cx="60" cy="9" r="1.2" fill="currentColor" stroke="none"/>
-        <ellipse cx="65" cy="9" rx="4.5" ry="2" transform="rotate(22 65 9)" fill="currentColor" stroke="none" opacity="0.7"/>
-        <path d="M70 9 H 116" opacity="0.4"/>
-      </svg>
-    </div>
-
-    <!-- BOTANICALS + INVITATION -->
-    <section class="invite-section" data-reveal>
-      <!-- decorative botanical SVG -->
-      <svg class="absolute -top-4 right-2 sm:right-6 w-20 h-20 sm:w-28 sm:h-28 text-olive-500 opacity-70 leaf-float"
-           viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-        <path d="M50,90 C50,60 30,40 20,20 C40,30 50,55 50,80"/>
-        <path d="M50,90 C50,60 70,40 80,20 C60,30 50,55 50,80"/>
-        <ellipse cx="32" cy="40" rx="8" ry="3" transform="rotate(-30 32 40)" fill="currentColor" opacity="0.5"/>
-        <ellipse cx="68" cy="40" rx="8" ry="3" transform="rotate(30 68 40)" fill="currentColor" opacity="0.5"/>
-        <ellipse cx="38" cy="60" rx="7" ry="2.5" transform="rotate(-30 38 60)" fill="currentColor" opacity="0.5"/>
-        <ellipse cx="62" cy="60" rx="7" ry="2.5" transform="rotate(30 62 60)" fill="currentColor" opacity="0.5"/>
-      </svg>
-
-      <svg class="absolute -top-2 left-2 sm:left-6 w-16 h-16 sm:w-24 sm:h-24 text-wheat-600 opacity-70 leaf-float delay-2"
-           viewBox="0 0 100 100" fill="currentColor">
-        <circle cx="50" cy="20" r="5" opacity="0.7"/>
-        <circle cx="42" cy="32" r="5" opacity="0.7"/>
-        <circle cx="58" cy="32" r="5" opacity="0.7"/>
-        <circle cx="38" cy="46" r="5" opacity="0.7"/>
-        <circle cx="50" cy="46" r="5" opacity="0.7"/>
-        <circle cx="62" cy="46" r="5" opacity="0.7"/>
-        <circle cx="44" cy="60" r="5" opacity="0.7"/>
-        <circle cx="56" cy="60" r="5" opacity="0.7"/>
-        <circle cx="50" cy="74" r="5" opacity="0.7"/>
-      </svg>
-
-      <div class="invite-card glass-card">
-        <p class="invite-text">
-          מוזמנות לבוקר של תנועה,
-          <br/>
-          <span class="text-terra-500">נשימה</span>
-          ושמחה
-          <span class="text-olive-700">פשוטה</span>.
-        </p>
-
-        <div class="invite-cta-wrap">
-          <button id="cta" type="button" class="btn-primary invite-cta">
-            <span>הרשמה לשיעור ניסיון</span>
-            <svg class="invite-cta-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-            </svg>
-          </button>
-          <p class="invite-cta-meta">המקומות מוגבלים</p>
-        </div>
-      </div>
+      <p id="classes-empty" class="classes-empty hidden">אין כרגע שיעורים פתוחים להרשמה. צרי קשר ישירות עם איתהאל.</p>
     </section>
 
     <!-- CONTACT -->
@@ -917,6 +1109,9 @@
     </section>
 
   </main>
+
+  <!-- Toast container for share-link feedback -->
+  <div id="share-toast" class="share-toast" role="status" aria-live="polite">הקישור הועתק</div>
 
   <!-- FLOATING MOBILE CTA (appears after hero) -->
   <div id="floating-cta" class="floating-cta hidden">
@@ -972,6 +1167,11 @@
                     class="w-full px-4 py-3 rounded-xl bg-cream-50 border border-wheat-400/40 focus:border-terra-500 focus:outline-none transition resize-none"></textarea>
         </label>
 
+        <label class="trial-row">
+          <input type="checkbox" name="is_trial" id="is-trial-input" />
+          <span class="trial-row-text">שיעור ניסיון (פעם ראשונה)</span>
+        </label>
+
         <div id="form-error" class="hidden text-terra-600 text-sm font-body bg-terra-400/10 border border-terra-400/30 rounded-xl px-4 py-3"></div>
 
         <button id="submit-btn" type="submit"
@@ -992,7 +1192,15 @@
         </div>
         <h4 class="font-display font-bold text-2xl text-sepia-700 mb-2">תודה!</h4>
         <p class="font-body text-sepia-600">קיבלנו את ההרשמה שלך.<br/>איתהאל תיצור איתך קשר בהקדם.</p>
-        <button data-close class="mt-5 font-display text-terra-500 hover:text-terra-700 transition text-sm">סגירה</button>
+        <div class="success-actions">
+          <button id="ics-download" type="button" class="ics-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+            </svg>
+            <span>הוספה ליומן</span>
+          </button>
+          <button data-close type="button" class="font-display text-terra-500 hover:text-terra-700 transition text-sm">סגירה</button>
+        </div>
       </div>
     </div>
   </div>
